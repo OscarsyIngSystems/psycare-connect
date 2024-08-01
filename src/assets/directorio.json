@@ -1,0 +1,50 @@
+{
+  "registros": [
+    {
+      "id": 1,
+      "nombre": "Hospitalito Gustavo Guerrero A.C. Casa de la Providencia",
+      "descipcion": "Neurología, Psiquiatría, Psicología, Nutriología, Odontología, Oftalmología, Ortodoncia, Ortopedia, Otorrinolaringología, Pediatría, Urología, Alergologia, Angiología y Cirugía Vascular, Audiología, Otoneurología, Foniatría, Cardiología, CirugíaDermatología, Medicina General, Ginecología y Obstetricia, Gastroenterología ",
+      "direccion": "Herreros 68, Morelos, Venustiano Carranza, 15340 Ciudad de México, CDMX, México",
+      "imagen": "imagen1.jpg",
+      "contacto": "Whatsapp: 56267 40488 Telefono: 55 7598 4230",
+      "proceso": "* Ir a formarse muy temprano para sacar ficha. * Pasar a caja para agendar la cita para el servicio deseado. * Realizar en efectivo el pago de la recuperación de cuota. * Acudir el día de la cita al servicio."
+    },
+    {
+      "id": 2,
+      "nombre": "Clínica Especializada Condesa",
+      "descipcion": "Servicio universal de detección de VIH Atención Especializada a personas que viven con VIH de la Ciudad de México ",
+      "direccion": "Gral. Benjamín Hill 24, Hipódromo Condesa, Cuauhtémoc, 06170 Ciudad de México, CDMX",
+      "imagen": "imagen2.jpg",
+      "contacto": "55 5515 8311",
+      "proceso": "* Llamar para solicitar cita."
+    },
+    {
+      "id": 1,
+      "nombre": "Juan",
+      "descipcion": "Un hospital psiquiátrico u hospital siquiátrico es un establecimiento dedicado al diagnóstico y tratamiento de enfermedades psiquiátricas que cuenta con internamiento ",
+      "direccion": "Calle 123",
+      "imagen": "imagen1.jpg",
+      "contacto": "",
+      "proceso": ""
+    },
+    {
+      "id": 2,
+      "nombre": "María",
+      "descipcion": "Un hospital psiquiátrico u hospital siquiátrico es un establecimiento dedicado al diagnóstico y tratamiento de enfermedades psiquiátricas que cuenta con internamiento ",
+      "direccion": "Avenida 456",
+      "ubicacion": "Ciudad B",
+      "imagen": "imagen2.jpg",
+      "contacto": "",
+      "proceso": ""
+    },
+    {
+      "id": 2,
+      "nombre": "María",
+      "descipcion": "Un hospital psiquiátrico u hospital siquiátrico es un establecimiento dedicado al diagnóstico y tratamiento de enfermedades psiquiátricas que cuenta con internamiento ",
+      "direccion": "Avenida 456",
+      "imagen": "imagen2.jpg",
+      "contacto": "",
+      "proceso": ""
+    }
+  ]
+}

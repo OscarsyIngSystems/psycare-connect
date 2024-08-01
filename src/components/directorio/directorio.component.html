@@ -1,0 +1,23 @@
+<section>Directorio de Instituciones</section>
+<section id="container-cards">
+  <div class="wrapper">
+    @for (instituto of institutos; track $index) {
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{ instituto.nombre }}</h5>
+        <p class="card-text">
+          {{ instituto.descipcion }}
+        </p>
+        <div class="d-flex justify-content-center">
+          <a
+            (click)="verDetalle(instituto)"
+            [routerLink]="['/detalles']"
+            class="btn btn-primary"
+            >Ver Detalles</a
+          >
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>

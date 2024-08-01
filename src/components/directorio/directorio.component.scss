@@ -1,0 +1,41 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: max-content;
+  gap: 2em;
+}
+
+.card {
+  background-color: white;
+  max-width: 30em;
+}
+
+//#region Medias Query
+
+// Cuando la pantalla es menor a 900
+@media only screen and (max-width: 900px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+// /* Escritorio extra grande */
+// @media only screen and (min-width: 1200px) {
+// }
+// /* Escritorio grande */
+// @media only screen and (min-width: 992px) and (max-width: 1199px) {
+// }
+
+// /* Escritorio pequeño / tablet */
+// @media only screen and (min-width: 768px) and (max-width: 991px) {
+// }
+
+// /* Tablets y phablets */
+// @media only screen and (min-width: 576px) and (max-width: 767px) {
+// }
+
+// /* Teléfonos */
+// @media only screen and (max-width: 575px) {
+// }
+
+//#endregion Medias Query

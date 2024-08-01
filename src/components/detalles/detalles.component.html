@@ -1,0 +1,29 @@
+<section>
+  <h1>{{ data.nombre }}</h1>
+  @switch (data.id) { @case (1) {
+  <iframe
+    title="Hospitalito"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120374.25294017581!2d-99.2066493639647!3d19.468695139282104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f95209f01cc9%3A0xf353199459bee287!2sHospitalito%20Gustavo%20Guerrero%20A.%20C.!5e0!3m2!1ses!2smx!4v1722490182777!5m2!1ses!2smx"
+    width="600"
+    height="450"
+    style="border: 0"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+  } @case (2) {
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.0827060391316!2d-99.18500042478622!3d19.408832181865463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff5dbcc3f335%3A0x3b4168d6b6ed2a0e!2sCl%C3%ADnica%20Especializada%20Condesa!5e0!3m2!1ses!2smx!4v1722494845249!5m2!1ses!2smx"
+    width="600"
+    height="450"
+    style="border: 0"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+  } }
+
+  <div class="d-flex justify-content-center">
+    <a [routerLink]="['/home']" class="btn btn-primary">Regresar</a>
+  </div>
+</section>
