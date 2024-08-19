@@ -189,13 +189,30 @@
           <span class="text-bold">Nombre: </span>{{ data.nombre }}
         </div>
         <div class="col-12 renglon">
-          <span class="text-bold"> Domicilio: </span>{{ data.direccion }}
+          <span class="text-bold"> Domicilio: </span>
+          <ul>
+            @for (item of data.direccion; track $index) {
+            <li>{{ item }}</li>
+            }
+          </ul>
         </div>
         <div class="col-12 renglon">
           <span class="text-bold"> Descripción: </span>{{ data.descipcion }}
         </div>
         <div class="col-12 renglon">
           <span class="text-bold"> Contacto: </span>{{ data.contacto }}
+          @if (data.contactos) {
+          <span class="text-bold"> Contacto: </span>
+          <ul>
+            @for (item of data.contactos; track $index) {
+            <li>
+              {{ item }}
+            </li>
+            }
+          </ul>
+          } @if (data.correo) {
+          <div><span class="text-bold"> Correo: </span>{{ data.correo }}</div>
+          }
         </div>
         <div class="col-12 renglon">
           <span class="text-bold"> Proceso: </span>{{ data.proceso }}

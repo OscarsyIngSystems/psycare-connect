@@ -7,6 +7,12 @@
   padding: 1em;
 }
 
+li::marker {
+  content: "■ ";
+  font-size: 1rem;
+  color: #851848;
+}
+
 h2 {
   position: relative;
 }
