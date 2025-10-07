@@ -176,6 +176,35 @@
       ],
       "correo": "contacto@consejociudadanomx.org",
       "proceso": "* Llamar para solicitar cita."
+    },
+    {
+      "id": 16,
+      "nombre": "IAPA (Instituto para la Atención y Prevención de las Adicciones En la Ciudad de México)",
+      "descipcion": "Atención psicológica",
+      "direccion": [
+        "https://www.iapa.cdmx.gob.mx/",
+        "Álvaro Obregón: Vasco de Quiroga 1345, Sta Fé, Álvaro Obregón, Ciudad de México.",
+        "Benito Juárez: Av. Río Mixcoac 342, Acacias, Benito Juárez, Ciudad de México.",
+        "Tlalpan: Cehuantepec, esq. Cd Xamíltepec 113-7, Mesa los Hornos, Tlalpan, Ciudad de México.",
+        "Gustavo A. Madero: Jaime Nuno 155, Cuautepec Barrio Bajo, Gustavo A. Madero, Ciudad de México.",
+        "Cuauhtémoc: Perú 88, Centro Histórico Cuauhtémoc, Ciudad de México.",
+        "Iztapalapa: Prof. San Isidro 151, San Lorenzo Tezonco, Iztapalapa, Ciudad de México.",
+        "Tláhuac: Calle Gitana 258, Colonia del Mar, Tláhuac, Ciudad de México."
+      ],
+      "imagen": "imagen2.jpg",
+      "contacto": "55 4631 3035 - Ext. 2502 y 2503, Vía WhatsApp: 55 7809 5579",
+
+      "proceso": "Ponte en contacto para recibir atención personalizada Vía Telefónica: 55 4631 3035 - Ext. 2502 y 2503 Vía WhatsApp: 55 7809 5579 (IAPABOT) Vía Videollamada: meet.google.com/tja-jmin-ohw. Asiste a uno de nuestros Centros de cuidado."
+    },
+    {
+      "id": 17,
+      "nombre": "Línea de la Vida (Comisión Nacional de Salud Mental y Adicciones)",
+      "descipcion": "Servicio gratuito de atención en salud mental y consumo de sustancias. Ofrece intervenciones breves para crisis, ansiedad, depresión y cesación tabáquica, con derivación especializada en casos severos. Atención 24/7 todo el año por personal calificado que promueve equidad, diversidad e inclusión.",
+      "direccion": ["En línea"],
+      "imagen": "imagen2.jpg",
+      "contacto": "800-911-2000",
+      "correo": "lalineadelavida@salud.gob.mx",
+      "proceso": "* Llamar "
     }
   ]
 }

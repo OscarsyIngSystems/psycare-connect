@@ -128,6 +128,13 @@ button {
   transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+.img-details {
+  width: 600px;
+  height: 800px;
+  border: 0;
+  // object-fit: cover;
+}
+
 //#region Medias Query
 
 @media (min-width: 900px) and (max-width: 1400px) {
