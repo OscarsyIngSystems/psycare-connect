@@ -205,6 +205,16 @@
       "contacto": "800-911-2000",
       "correo": "lalineadelavida@salud.gob.mx",
       "proceso": "* Llamar "
+    },
+    {
+      "id": 18,
+      "nombre": "CIJ - Centro de Integración Juvenil A.C.",
+      "descipcion": "Prevención, tratamiento, rehabilitación, investigación científica y formación de especialistas en materia de consumo de drogas, atención psiquiátrica, psicológica y con diferentes especialistas.",
+      "direccion": ["Mier y Pesado 141"],
+      "imagen": "imagen2.jpg",
+      "contacto": "55 5543 9267, 55 5212 1212, 55 4555 1212",
+      "correo": "",
+      "proceso": "* Llamar "
     }
   ]
 }
