@@ -88,6 +88,18 @@
       flex-direction: column;
       min-height: 23rem;
       padding: 1rem;
+
+      &-icon {
+        font-size: 4rem;
+        display: inline-block;
+        background-image: linear-gradient(
+          to right,
+          $color-blue-ligth,
+          $color-blue-dark
+        );
+        -webkit-background-clip: text;
+        color: transparent;
+      }
     }
   }
 

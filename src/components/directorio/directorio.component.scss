@@ -158,6 +158,10 @@ button:hover {
   transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+.card__side--body-icon {
+  display: none;
+}
+
 //#region Medias Query
 
 @media (min-width: 900px) and (max-width: 1194px) {
@@ -172,6 +176,7 @@ button:hover {
   .wrapper {
     grid-template-columns: 1fr 1fr;
     padding: 3rem;
+    gap: 2em;
   }
   .card {
     // max-width: 20em;
@@ -206,6 +211,7 @@ button:hover {
 @media (min-width: 514px) and (max-width: 702px) {
   .wrapper {
     grid-template-columns: 1fr;
+    padding: 5rem;
   }
   .card {
     max-width: 100%;
@@ -216,6 +222,19 @@ button:hover {
     text-overflow: ellipsis !important;
 
     height: 126px !important;
+  }
+
+  .card__side--body {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    /* min-height: 9rem; */
+    padding: 1rem;
+    height: 50%;
+  }
+  .card__side--body-icon {
+    display: block;
   }
 }
 
@@ -233,6 +252,19 @@ button:hover {
     text-overflow: ellipsis !important;
 
     height: 126px !important;
+  }
+
+  .card__side--body {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    /* min-height: 9rem; */
+    padding: 1rem;
+    height: 50%;
+  }
+  .card__side--body-icon {
+    display: block;
   }
 }
 // /* Escritorio extra grande */

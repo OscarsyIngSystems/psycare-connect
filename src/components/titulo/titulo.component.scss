@@ -62,12 +62,13 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1rem 0;
   }
   img {
-    width: 15%;
+    width: 20%;
     padding: 0;
   }
-  span {
+  .container-span {
     display: none;
   }
 }
@@ -77,12 +78,13 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1rem 0;
   }
   img {
-    width: 15%;
+    width: 20%;
     padding: 0;
   }
-  span {
+  .container-span {
     display: none;
   }
   .wrapper {
