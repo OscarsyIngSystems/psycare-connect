@@ -1,3 +1,8 @@
+@use "../../sass/variables" as *;
+
+section {
+  padding: 2em 0;
+}
 .text-bold {
   font-weight: bold;
 }
@@ -9,8 +14,8 @@
 
 li::marker {
   content: "■ ";
-  font-size: 1rem;
-  color: #851848;
+  font-size: 1.5rem;
+  color: $color-ipn-dark;
 }
 
 h2 {
@@ -27,13 +32,19 @@ h2::after {
   vertical-align: center;
   font-size: 15px;
   border-radius: 50%;
-  background-color: #851848;
+  // background-color: #851848;
+  background-image: linear-gradient(
+    to right,
+    $color-blue-ligth,
+    $color-blue-dark
+  );
   height: 30px;
   width: 30px;
   position: absolute;
 
-  top: 5px;
-  left: -32px;
+  top: -2px;
+  left: -40px;
+  margin-right: 3rem;
 }
 
 .mapa {

@@ -1,3 +1,5 @@
+@use "../../sass/variables" as *;
+
 .titulo {
   background-color: red;
 }
@@ -39,12 +41,33 @@
   vertical-align: center;
   font-size: 15px;
   border-radius: 50%;
-  background-color: #851848;
+  background-image: linear-gradient(
+    to right,
+    $color-blue-ligth,
+    $color-blue-dark
+  );
   height: 30px;
   width: 30px;
   position: absolute;
   top: -15px;
   left: 95%;
+}
+
+.card:hover::after {
+  animation: coinFlip 0.5s ease-in-out;
+}
+
+// Definir la animación keyframes
+@keyframes coinFlip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(360deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
 }
 
 .text-bold {

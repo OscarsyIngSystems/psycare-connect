@@ -1,3 +1,5 @@
+@use "../../sass/variables" as *;
+
 // span {
 //   color: #851848;
 //   margin: auto;
@@ -9,13 +11,21 @@ img {
 }
 
 .divisor {
-  border-bottom: solid 0.3em #851848;
-  margin-bottom: 1.5em;
+  // border-bottom: solid 0.3em #851848;
+  width: 90%;
+  max-height: 0.5rem;
+  background-image: linear-gradient(
+    to right,
+    $color-ipn-ligth,
+    $color-ipn-dark
+  );
+  margin: 0 auto;
+  // margin-bottom: 1.5em;
 }
 
 .containerTitulo {
   text-align: center;
-  padding-top: 0.1%;
+  margin: 3rem 0;
   background-color: white;
   min-height: 1em;
 
