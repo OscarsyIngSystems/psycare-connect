@@ -1,0 +1,204 @@
+@use "variables" as *;
+
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 50rem;
+  border: none;
+
+  &__side {
+    background-color: #fff;
+    height: 50rem;
+    transition: all 1s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 5px;
+
+    box-shadow: 0 1.5rem 4rem rgba(black, 0.4);
+
+    &--front {
+      background-color: #fff;
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+
+      // &-1 {
+      //   background-image: linear-gradient(
+      //     to right bottom,
+      //     $color-orange-ligth,
+      //     $color-orange-dark
+      //   );
+      // }
+
+      // &-2 {
+      //   background-image: linear-gradient(
+      //     to right bottom,
+      //     $color-ipn-ligth,
+      //     $color-ipn-dark
+      //   );
+      // }
+
+      // &-3 {
+      //   display: flex;
+      //   justify-content: center;
+      //   align-items: center;
+      //   background-image: linear-gradient(
+      //     to right bottom,
+      //     $color-ipn-ligth,
+      //     $color-ipn-dark
+      //   );
+      // }
+    }
+
+    &--btn-text {
+      &:link,
+      &:visited {
+        color: #fff;
+        text-decoration: none;
+        display: inline-block;
+        border-bottom: 1px solid #fff;
+        padding: 0.3rem;
+        font-size: 2rem;
+        transition: all 0.2s;
+      }
+
+      &:hover {
+        background-color: #851848;
+        color: white;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+        border-radius: 5px;
+      }
+
+      &:active {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        transform: translateY(0);
+      }
+    }
+
+    &--body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 23rem;
+      padding: 1rem;
+    }
+  }
+
+  &__picture {
+    min-height: 20rem;
+    background-blend-mode: screen;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-size: cover;
+
+    // &--1 {
+    //   background-image: linear-gradient(
+    //       to right,
+    //       rgba($color-orange-ligth, 0.8),
+    //       rgba($color-orange-dark, 0.8)
+    //     ),
+    //     url("../assets/img2.jpg");
+    // }
+
+    // &--2 {
+    //   background-image: linear-gradient(
+    //       to right,
+    //       rgba($color-ipn-ligth, 0.8),
+    //       rgba($color-ipn-dark, 0.8)
+    //     ),
+    //     url("../assets/img5.png");
+    // }
+
+    // &--3 {
+    //   background-image: linear-gradient(
+    //       to right,
+    //       rgba($color-ipn-ligth, 0.8),
+    //       rgba($color-ipn-dark, 0.8)
+    //     ),
+    //     url("../assets/img4.jpg");
+    // }
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(180deg);
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0deg);
+  }
+
+  &__heading {
+    background-image: linear-gradient(
+      to right,
+      $color-ipn-dark,
+      $color-ipn-ligth
+    );
+  }
+}
+
+[im="1"] {
+  background-image: linear-gradient(
+      to right,
+      rgba($color-ipn-ligth, 0.8),
+      rgba($color-ipn-dark, 0.8)
+    ),
+    url("../assets/img5.png");
+}
+
+[im="2"] {
+  background-image: linear-gradient(
+      to right,
+      rgba($color-green-ligth, 0.8),
+      rgba($color-green-dark, 0.8)
+    ),
+    url("../assets/img4.jpg");
+}
+
+[im="3"] {
+  background-image: linear-gradient(
+      to right,
+      rgba($color-orange-ligth, 0.8),
+      rgba($color-orange-dark, 0.8)
+    ),
+    url("../assets/img3.jpg");
+}
+
+[colorBack="1"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    to right bottom,
+    $color-ipn-ligth,
+    $color-ipn-dark
+  );
+}
+
+[colorBack="2"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    to right bottom,
+    $color-green-ligth,
+    $color-green-dark
+  );
+}
+
+[colorBack="3"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    to right bottom,
+    $color-orange-ligth,
+    $color-orange-dark
+  );
+}

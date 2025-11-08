@@ -6,7 +6,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-auto-rows: max-content;
-  gap: 2em;
+  gap: 4em;
+  padding: 10rem;
 }
 
 .textContainer {
@@ -17,15 +18,15 @@
   margin-top: 0.5em;
 }
 
-.card {
-  background-color: white;
-  max-width: 26em;
-  min-height: 20em;
-  opacity: 1;
+// .card {
+//   background-color: white;
+//   max-width: 26em;
+//   min-height: 20em;
+//   opacity: 1;
 
-  transition: background-color 0.5s ease 0s;
-  height: 20em;
-}
+//   transition: background-color 0.5s ease 0s;
+//   height: 20em;
+// }
 
 .card::after {
   content: attr(id);

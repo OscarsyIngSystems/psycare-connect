@@ -1,36 +1,45 @@
 <section class="px-2 py-2 d-flex justify-content-center">
-  <div class="wrapper">
+  <div class="wrapper w-100">
     @for (instituto of institutos; track $index) {
 
     <div
       id="{{ instituto.id }}"
       class="contener card animate__animated animate__pulse"
     >
-      <div class="row d-flex justify-content-center h-100 align-items-center">
-        <div class="row">
-          <h5 class="card-title text-center text-bold">
-            {{ instituto.nombre }}
-          </h5>
-        </div>
-        <div class="row">
-          <p class="card-text textContainer">
-            {{ instituto.descipcion }}
-          </p>
-        </div>
-        <div
-          class="row py-1 d-flex justify-content-center align-items-center align-content-center"
-        >
-          <div class="container">
-            <button
+      <div
+        class="row d-flex justify-content-center w-100 h-100 align-items-center"
+      >
+        <div class="card">
+          <div class="card__side card__side--front">
+            <div
+              [attr.im]="instituto.imagen"
+              class="card__picture card__picture--3"
+            >
+              &nbsp;
+            </div>
+            <div
+              [attr.colorBack]="instituto.imagen"
+              class="card__heading text-center"
+            >
+              <span class="heading-tertiary"> {{ instituto.nombre }}</span>
+            </div>
+            <div class="card__side--body">
+              <div class="card__details">
+                {{ instituto.descipcion }}
+              </div>
+            </div>
+          </div>
+          <div
+            [attr.colorBack]="instituto.imagen"
+            class="card__side card__side--back card__side--back-3"
+          >
+            <a
+              href="#"
               (click)="verDetalle(instituto)"
               [routerLink]="['/detalles']"
-              class="btnfos btnfos-1 text-decoration-none"
+              class="card__side--btn-text"
+              >Ver Detalles &zigrarr;</a
             >
-              <svg>
-                <rect x="0" y="0" fill="none" width="100%" height="100%" />
-              </svg>
-              Ver Detalle
-            </button>
           </div>
         </div>
       </div>

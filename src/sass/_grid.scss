@@ -1,0 +1,58 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.roww {
+  max-width: $grid-width;
+  // background-color: $color-grey;
+  margin: 0 auto;
+
+  //selecciona a todos menos a el ultimo hijo y aplica la propiedad
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+  }
+
+  @include clearfix;
+
+  [class^="col-"] {
+    background-color: $color-red;
+
+    float: left;
+
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+    }
+  }
+
+  .col-1-of-2 {
+    // width: calc((100% - #{$gutter-horizontal})/2);
+
+    @include colsize(2);
+  }
+
+  .col-1-of-3 {
+    @include colsize(3);
+  }
+
+  .col-2-of-3 {
+    width: calc(
+      2 * ((100% - (#{$gutter-horizontal} * 2)) / 3) + #{$gutter-horizontal}
+    );
+  }
+
+  .col-1-of-4 {
+    @include colsize(4);
+  }
+
+  .col-2-of-4 {
+    width: calc(
+      2 * ((100% - (#{$gutter-horizontal} * 3)) / 4) + #{$gutter-horizontal}
+    );
+  }
+
+  .col-3-of-4 {
+    width: calc(
+      3 * ((100% - (#{$gutter-horizontal} * 3)) / 4) +
+        (#{$gutter-horizontal} * 2)
+    );
+  }
+}

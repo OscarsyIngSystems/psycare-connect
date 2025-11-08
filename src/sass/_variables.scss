@@ -1,0 +1,43 @@
+ 
+ // #region COLORS
+
+ 
+ $color-red: rgb(216, 33, 33);
+ $color-grey: #eee;
+
+ $color-green-ligth: rgb(80, 248, 170);
+ $color-green-dark: rgb(19, 139, 3);
+
+  $color-orange-ligth: rgb(252, 196, 75);
+ $color-orange-dark: rgb(180, 99, 6);
+
+ $color-blue-ligth: rgb(80, 230, 250);
+ $color-blue-dark: rgb(3, 50, 151);
+
+$color-ipn-dark : rgb(184, 7, 175);
+$color-ipn-ligth : rgba(238, 61, 229, 0.322);
+
+
+ // #endregion COLORS
+
+
+
+  // #region Grid
+
+ 
+ $grid-width: 114rem;
+ $gutter-vertical: 8rem;
+ $gutter-horizontal:6rem;
+
+
+ // #endregion Grid
+
+ //#region Dividers
+.mb-20{margin-bottom: 2rem;}
+.mb-40{margin-bottom: 2rem;}
+.my-20{margin-top: 2rem; margin-bottom: 2rem;}
+
+
+
+ //#endregion Dividers
+

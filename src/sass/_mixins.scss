@@ -1,0 +1,17 @@
+@use "variables" as *;
+
+
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+
+@mixin colsize($numCol) {
+
+
+    width: calc((100% - (#{$gutter-horizontal} * ($numCol - 1)))/$numCol);
+}

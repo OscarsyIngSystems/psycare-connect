@@ -1,2 +1,20 @@
+// /* You can add global styles to this file, and also import other style files */
+
+// @import "../node_modules/animate.css/animate.css";
+// @use "sass/grid";
+// @use "sass/base";
+// @use "sass/variables";
+// @use "sass/home";
+// @use "sass/cards";
+
 /* You can add global styles to this file, and also import other style files */
+
+// Primero todas las reglas @use
+@use "sass/grid";
+@use "sass/base";
+@use "sass/variables";
+@use "sass/home";
+@use "sass/cards";
+
+// Luego los @import
 @import "../node_modules/animate.css/animate.css";
