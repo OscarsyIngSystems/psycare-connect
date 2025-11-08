@@ -137,7 +137,7 @@ button:hover {
 
 //#region Medias Query
 
-@media (min-width: 900px) and (max-width: 1400px) {
+@media (min-width: 900px) and (max-width: 1194px) {
   .wrapper {
     grid-template-columns: 1fr 1fr;
     padding: 3rem;
@@ -145,13 +145,13 @@ button:hover {
 }
 
 // Cuando la pantalla es menor a 900
-@media only screen and (max-width: 900px) {
+@media (min-width: 703px) and (max-width: 899px) {
   .wrapper {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     padding: 3rem;
   }
   .card {
-    max-width: 20em;
+    // max-width: 20em;
     min-height: 20em;
   }
   .textContainer {
@@ -162,41 +162,56 @@ button:hover {
   }
 }
 
-@media (min-width: 600px) {
-  .btnfos:nth-of-type(even) {
-    margin-right: 2.5em;
+// @media (min-width: 600px) {
+//   .btnfos:nth-of-type(even) {
+//     margin-right: 2.5em;
+//   }
+//   .btnfos:nth-of-type(5) {
+//     margin-right: 0;
+//   }
+// }
+
+// @media (min-width: 400px) {
+//   .btnfos {
+//     display: inline-block;
+//   }
+//   .btnfos:nth-of-type(even) {
+//     margin-right: 0;
+//   }
+// }
+
+@media (min-width: 514px) and (max-width: 702px) {
+  .wrapper {
+    grid-template-columns: 1fr;
   }
-  .btnfos:nth-of-type(5) {
-    margin-right: 0;
+  .card {
+    max-width: 100%;
+    min-height: 20em;
+  }
+  .textContainer {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+
+    height: 126px !important;
   }
 }
 
-@media (min-width: 400px) {
-  .btnfos {
-    display: inline-block;
-  }
-  .btnfos:nth-of-type(even) {
-    margin-right: 0;
-  }
-}
-
-@media only screen and (max-width: 344px) {
+@media (min-width: 300px) and (max-width: 513px) {
   .wrapper {
     grid-template-columns: 1fr;
     padding: 3rem;
   }
   .card {
-    max-width: 18em;
+    // max-width: 22rem;
     min-height: 20em;
   }
   .textContainer {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 
-    height: 126px;
+    height: 126px !important;
   }
 }
-
 // /* Escritorio extra grande */
 // @media only screen and (min-width: 1200px) {
 // }
