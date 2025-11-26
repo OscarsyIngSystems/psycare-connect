@@ -54,7 +54,7 @@
       "direccion": [
         "C. Dr. Enrique González Martínez 131, Sta María la Ribera, Cuauhtémoc, 06400 Ciudad de México, CDMX"
       ],
-      "imagen": "2",
+      "imagen": "4",
       "contacto": "5062 1600 ext. 50212",
       "proceso": "* Llamar para solicitar cita."
     },
@@ -65,7 +65,7 @@
       "direccion": [
         "Huánuco 323, Residencial Zacatenco, Gustavo A. Madero, 07369 Ciudad de México, CDMX"
       ],
-      "imagen": "1",
+      "imagen": "4",
       "contacto": "55 6392 4679",
       "proceso": "* Llamar para solicitar cita."
     },
@@ -76,7 +76,7 @@
       "direccion": [
         "Calz México-Xochimilco 101, Colonia, Huipulco, Tlalpan, 14370 Ciudad de México, CDMX"
       ],
-      "imagen": "1",
+      "imagen": "3",
       "contacto": "55 4160 5000",
       "proceso": "* Llamar para solicitar cita."
     },
@@ -87,7 +87,7 @@
       "direccion": [
         "C. Guerrero 346, Tlatelolco, Cuauhtémoc, 06900 Ciudad de México, CDMX"
       ],
-      "imagen": "2",
+      "imagen": "5",
       "contacto": "55 5597 9759",
       "proceso": "* Llamar para solicitar cita."
     },
@@ -99,7 +99,7 @@
       "direccion": [
         "Chosica 730, Lindavista, Gustavo A. Madero, 07300 Ciudad de México, CDMX"
       ],
-      "imagen": "3",
+      "imagen": "1",
       "contacto": "56 1170 8117, 55 2957 8749",
       "proceso": "* Llamar para solicitar cita."
     },
@@ -121,7 +121,7 @@
       "direccion": [
         "Av. Montevideo 635, San Bartolo Atepehuacan, Gustavo A. Madero, 07730 Ciudad de México, CDMX"
       ],
-      "imagen": "2",
+      "imagen": "6",
       "contacto": "55 5119 4106",
       "proceso": "* Llamar para solicitar cita."
     },
@@ -132,7 +132,7 @@
       "direccion": [
         "Eugenia 13, Nápoles, Benito Juárez, 03840 Ciudad de México, CDMX"
       ],
-      "imagen": "3",
+      "imagen": "7",
       "contacto": "55 7558 5944",
       "proceso": "* Llamar para solicitar cita."
     },
@@ -143,7 +143,7 @@
       "direccion": [
         "Salvador Díaz Mirón 140 Santa María La Ribera, Cuauhtémoc, Ciudad de México, DF, México"
       ],
-      "imagen": "3",
+      "imagen": "8",
       "contacto": "5682 7969, 5547 8639",
       "correo": "adivac@adivac.org",
       "proceso": "* Llamar para solicitar cita."
@@ -153,7 +153,7 @@
       "nombre": "Asociación Mexicana de Suicidología",
       "descipcion": "Atención psicológica contra el suicidio",
       "direccion": ["En línea"],
-      "imagen": "2",
+      "imagen": "9",
       "contacto": "55 525 98121 , 55 5622 2288 , 55 553 355 33",
       "correo": "info@suicidologia.org.mx",
       "proceso": "* Llamar para solicitar cita."
@@ -191,7 +191,7 @@
         "Iztapalapa: Prof. San Isidro 151, San Lorenzo Tezonco, Iztapalapa, Ciudad de México.",
         "Tláhuac: Calle Gitana 258, Colonia del Mar, Tláhuac, Ciudad de México."
       ],
-      "imagen": "1",
+      "imagen": "4",
       "contacto": "55 4631 3035 - Ext. 2502 y 2503, Vía WhatsApp: 55 7809 5579",
 
       "proceso": "Ponte en contacto para recibir atención personalizada Vía Telefónica: 55 4631 3035 - Ext. 2502 y 2503 Vía WhatsApp: 55 7809 5579 (IAPABOT) Vía Videollamada: meet.google.com/tja-jmin-ohw. Asiste a uno de nuestros Centros de cuidado."
@@ -201,7 +201,7 @@
       "nombre": "Línea de la Vida (Comisión Nacional de Salud Mental y Adicciones)",
       "descipcion": "Servicio gratuito de atención en salud mental y consumo de sustancias. Ofrece intervenciones breves para crisis, ansiedad, depresión y cesación tabáquica, con derivación especializada en casos severos. Atención 24/7 todo el año por personal calificado que promueve equidad, diversidad e inclusión.",
       "direccion": ["En línea"],
-      "imagen": "2",
+      "imagen": "4",
       "contacto": "800-911-2000",
       "correo": "lalineadelavida@salud.gob.mx",
       "proceso": "* Llamar "
@@ -211,7 +211,7 @@
       "nombre": "CIJ - Centro de Integración Juvenil A.C.",
       "descipcion": "Prevención, tratamiento, rehabilitación, investigación científica y formación de especialistas en materia de consumo de drogas, atención psiquiátrica, psicológica y con diferentes especialistas.",
       "direccion": ["Mier y Pesado 141"],
-      "imagen": "3",
+      "imagen": "1",
       "contacto": "55 5543 9267, 55 5212 1212, 55 4555 1212",
       "correo": "",
       "proceso": "* Llamar "

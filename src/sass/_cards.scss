@@ -161,26 +161,91 @@
       rgba($color-ipn-ligth, 0.8),
       rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/img5.png");
+    url("../assets/1.png");
 }
 
 [im="2"] {
   background-image: linear-gradient(
       to right,
-      rgba($color-green-ligth, 0.8),
-      rgba($color-green-dark, 0.8)
+      rgba($color-ipn-ligth, 0.8),
+      rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/img4.jpg");
+    url("../assets/2.png");
 }
-
 [im="3"] {
   background-image: linear-gradient(
       to right,
-      rgba($color-orange-ligth, 0.8),
-      rgba($color-orange-dark, 0.8)
+      rgba($color-ipn-ligth, 0.8),
+      rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/img3.jpg");
+    url("../assets/3.png");
 }
+[im="4"] {
+  background-image: linear-gradient(
+      to right,
+      rgba($color-ipn-ligth, 0.8),
+      rgba($color-ipn-dark, 0.8)
+    ),
+    url("../assets/4.png");
+}
+[im="5"] {
+  background-image: linear-gradient(
+      to right,
+      rgba($color-ipn-ligth, 0.8),
+      rgba($color-ipn-dark, 0.8)
+    ),
+    url("../assets/5.png");
+}
+[im="6"] {
+  background-image: linear-gradient(
+      to right,
+      rgba($color-ipn-ligth, 0.8),
+      rgba($color-ipn-dark, 0.8)
+    ),
+    url("../assets/6.png");
+}
+[im="7"] {
+  background-image: linear-gradient(
+      to right,
+      rgba($color-ipn-ligth, 0.8),
+      rgba($color-ipn-dark, 0.8)
+    ),
+    url("../assets/7.png");
+}
+[im="8"] {
+  background-image: linear-gradient(
+      to right,
+      rgba($color-ipn-ligth, 0.8),
+      rgba($color-ipn-dark, 0.8)
+    ),
+    url("../assets/8.png");
+}
+[im="9"] {
+  background-image: linear-gradient(
+      to right,
+      rgba($color-ipn-ligth, 0.8),
+      rgba($color-ipn-dark, 0.8)
+    ),
+    url("../assets/9.png");
+}
+
+// [im="2"] {
+//   background-image: linear-gradient(
+//       to right,
+//       rgba($color-green-ligth, 0.8),
+//       rgba($color-green-dark, 0.8)
+//     ),
+//     url("../assets/img4.jpg");
+// }
+
+// [im="3"] {
+//   background-image: linear-gradient(
+//       to right,
+//       rgba($color-orange-ligth, 0.8),
+//       rgba($color-orange-dark, 0.8)
+//     ),
+//     url("../assets/img3.jpg");
+// }
 
 [colorBack="1"] {
   display: flex;
