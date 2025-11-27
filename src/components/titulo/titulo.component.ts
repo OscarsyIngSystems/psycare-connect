@@ -101,6 +101,8 @@ export class TituloComponent {
 
   // Método para cerrar el modal
   closeModal() {
+    this.resetForm();
+
     const modalElement = document.getElementById('loginModal');
     if (modalElement) {
       const modal = (window as any).bootstrap.Modal.getInstance(modalElement);

@@ -19,6 +19,8 @@
   tabindex="-1"
   aria-labelledby="loginModalLabel"
   aria-hidden="true"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -29,6 +31,7 @@
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
+          (click)="closeModal()"
         ></button>
       </div>
       <div class="modal-body">
