@@ -1,8 +1,96 @@
 <div class="containerTitulo">
   <img src="../../assets/LOGO_psicologa.png" alt="" srcset="" />
   <div class="container-span ps-5">
-    <!-- <span class="tituloText"> Directorio de Canalizaciones </span> -->
     <span class="heading-secondary"> Directorio de Canalizaciones </span>
   </div>
+  <img
+    class="login c-pointer"
+    src="../../assets/login3.png"
+    alt="Iniciar Sesión"
+    data-bs-toggle="modal"
+    data-bs-target="#loginModal"
+  />
 </div>
 <div class="divisor">&nbsp;</div>
+
+<div
+  class="modal fade modal-lord"
+  id="loginModal"
+  tabindex="-1"
+  aria-labelledby="loginModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="onSubmit()">
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              [(ngModel)]="loginData.email"
+              name="email"
+              placeholder="nombre@ejemplo.com"
+              required
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              (input)="onEmailChange()"
+              [class.is-invalid]="formErrors.email"
+            />
+            <div class="invalid-feedback" *ngIf="formErrors.email">
+              {{ formErrors.email }}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <div class="input-group">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                id="password"
+                [(ngModel)]="loginData.password"
+                name="password"
+                placeholder="Ingresa tu contraseña"
+                required
+                minlength="6"
+                (input)="onPasswordChange()"
+                [class.is-invalid]="formErrors.password"
+              />
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="togglePasswordVisibility()"
+              >
+                <i
+                  class="bi icon-eye"
+                  [class.bi-eye]="!showPassword"
+                  [class.bi-eye-slash]="showPassword"
+                ></i>
+              </button>
+            </div>
+
+            <div class="invalid-feedback" *ngIf="formErrors.password">
+              {{ formErrors.password }}
+            </div>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">
+              Iniciar Sesión
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

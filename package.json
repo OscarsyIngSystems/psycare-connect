@@ -20,12 +20,14 @@
     "@angular/platform-browser": "^17.1.0",
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",
+    "@popperjs/core": "^2.11.8",
     "animate.css": "^4.1.1",
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
     "rxjs": "~7.8.0",
+    "sass": "^1.93.3",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.3",
-    "sass": "^1.93.3"
+    "zone.js": "~0.14.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.1.3",
