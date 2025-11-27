@@ -239,6 +239,9 @@ button:hover {
 }
 
 @media (min-width: 300px) and (max-width: 513px) {
+  .card__details {
+    font-size: small;
+  }
   .wrapper {
     grid-template-columns: 1fr;
     padding: 3rem;

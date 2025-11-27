@@ -22,6 +22,7 @@
 
     &--front {
       background-color: #fff;
+      border: solid 0.08rem violet;
     }
 
     &--back {
@@ -138,6 +139,10 @@
     // }
   }
 
+  // &__details {
+  //   font-size: small;
+  // }
+
   &:hover &__side--front {
     transform: rotateY(180deg);
   }
@@ -161,8 +166,8 @@
       rgba($color-ipn-ligth, 0.8),
       rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/1.png");
-  background-size: contain; /* Cambiado de 'cover' a 'contain' */
+    url("../assets/1.jpg");
+  background-size: cover; /* Cambiado de 'cover' a 'contain' */
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -173,8 +178,8 @@
       rgba($color-ipn-ligth, 0.8),
       rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/2.png");
-  background-size: contain; /* Cambiado de 'cover' a 'contain' */
+    url("../assets/2.jpg");
+  background-size: cover; /* Cambiado de 'cover' a 'contain' */
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -184,8 +189,8 @@
       rgba($color-ipn-ligth, 0.8),
       rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/3.png");
-  background-size: contain; /* Cambiado de 'cover' a 'contain' */
+    url("../assets/3.jpg");
+  background-size: cover; /* Cambiado de 'cover' a 'contain' */
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -195,8 +200,8 @@
       rgba($color-ipn-ligth, 0.8),
       rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/4.png");
-  background-size: contain; /* Cambiado de 'cover' a 'contain' */
+    url("../assets/4.jpg");
+  background-size: cover; /* Cambiado de 'cover' a 'contain' */
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -206,8 +211,8 @@
       rgba($color-ipn-ligth, 0.8),
       rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/5.png");
-  background-size: contain; /* Cambiado de 'cover' a 'contain' */
+    url("../assets/5.jpg");
+  background-size: cover; /* Cambiado de 'cover' a 'contain' */
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -217,8 +222,8 @@
       rgba($color-ipn-ligth, 0.8),
       rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/6.png");
-  background-size: contain; /* Cambiado de 'cover' a 'contain' */
+    url("../assets/6.jpg");
+  background-size: cover; /* Cambiado de 'cover' a 'contain' */
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -228,8 +233,8 @@
       rgba($color-ipn-ligth, 0.8),
       rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/7.png");
-  background-size: contain; /* Cambiado de 'cover' a 'contain' */
+    url("../assets/7.jpg");
+  background-size: cover; /* Cambiado de 'cover' a 'contain' */
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -239,8 +244,8 @@
       rgba($color-ipn-ligth, 0.8),
       rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/8.png");
-  background-size: contain; /* Cambiado de 'cover' a 'contain' */
+    url("../assets/8.jpg");
+  background-size: cover; /* Cambiado de 'cover' a 'contain' */
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -250,8 +255,8 @@
       rgba($color-ipn-ligth, 0.8),
       rgba($color-ipn-dark, 0.8)
     ),
-    url("../assets/9.png");
-  background-size: contain; /* Cambiado de 'cover' a 'contain' */
+    url("../assets/9.jpg");
+  background-size: cover; /* Cambiado de 'cover' a 'contain' */
   background-position: center;
   background-repeat: no-repeat;
 }
