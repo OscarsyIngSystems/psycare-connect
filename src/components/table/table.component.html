@@ -1,0 +1,74 @@
+<!-- En tu componente Angular -->
+<div class="card-table-container">
+  <div class="table-card">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (institucion of instituciones; track institucion.id) {
+        <tr>
+          <td class="nombre-cell">
+            <div class="nombre-content">
+              <span class="table_name">{{ institucion.nombre }}</span>
+            </div>
+          </td>
+          <td>
+            <div class="descripcion-content">
+              <span class="descripcion-text">{{ institucion.descipcion }}</span>
+              @if (institucion.direccion && institucion.direccion.length > 0) {
+              <div class="direccion-info">
+                <span class="direccion-icon">📍</span>
+                <span class="direccion-text">{{
+                  institucion.direccion[0]
+                }}</span>
+              </div>
+              }
+            </div>
+          </td>
+          <td>
+            @if (institucion.activo) {
+            <span class="status-badge status-activo">Activo</span>
+            } @else {
+            <span class="status-badge status-inactivo">Inactivo</span>
+            }
+          </td>
+          <td class="actions-cell">
+            <button
+              class="action-btn edit-btn"
+              (click)="editarInstitucion(institucion)"
+            >
+              <span class="edit-icon">
+                <img
+                  class="img-edit"
+                  src="../../assets/editar.gif"
+                  alt=""
+                  srcset=""
+                />
+              </span>
+            </button>
+            <button
+              class="action-btn view-btn"
+              (click)="verDetalles(institucion)"
+            >
+              <span class="delete-icon">
+                <img
+                  class="img-delete"
+                  src="../../assets/eliminar.png"
+                  alt=""
+                  srcset=""
+                />
+              </span>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

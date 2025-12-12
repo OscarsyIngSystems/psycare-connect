@@ -1,0 +1,235 @@
+@use "../../sass/variables" as *;
+
+.card-table-container {
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, sans-serif;
+}
+
+.table_name {
+  color: $color-green-table;
+}
+
+.table-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+  }
+
+  th {
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 600;
+    color: $color-blue-dark;
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: white;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  td {
+    padding: 18px 20px;
+    color: #212529;
+    font-size: 14px;
+    vertical-align: middle; /* Cambiado a top para mejor alineación */
+  }
+}
+
+.nombre-cell {
+  font-weight: 500;
+  min-width: 200px;
+}
+
+.nombre-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.institution-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #e9ecef;
+  flex-shrink: 0;
+}
+
+.descripcion-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.descripcion-text {
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.direccion-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.direccion-icon {
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+.direccion-text {
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.status-activo {
+  background-color: white;
+  border: solid 1px #96c721;
+  color: #96c721;
+}
+
+.status-inactivo {
+  background-color: white;
+  border: solid 1px #ef4444;
+  color: #ef4444;
+}
+
+.actions-cell {
+  width: 120px;
+}
+
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: all 0.15s ease;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.view-btn {
+  background-color: transparent;
+
+  &:hover {
+    box-shadow: 0 2px 4px rgba(224, 168, 0, 0.15);
+  }
+}
+
+.edit-btn {
+  background-color: transparent;
+
+  &:hover {
+    box-shadow: 0 2px 4px rgba(224, 168, 0, 0.15);
+  }
+}
+
+.delete-icon,
+.edit-icon {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.img-delete {
+  width: 4rem;
+  height: 4rem;
+}
+
+.img-edit {
+  width: 4rem;
+  height: 4rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table-card {
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+
+  .styled-table {
+    min-width: 600px;
+  }
+
+  th,
+  td {
+    padding: 14px 16px;
+  }
+
+  .nombre-content {
+    gap: 8px;
+  }
+
+  .institution-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .action-btn {
+    width: 32px;
+    height: 32px;
+    margin-right: 6px;
+  }
+}

@@ -1,0 +1,30 @@
+@use "../../sass/variables" as *;
+
+.container__admin-institutos {
+  margin-top: 5rem;
+
+  &--title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: $color-blue-dark;
+  }
+
+  &--btn {
+    background-color: $color-pink-dark;
+    color: white;
+    width: 16rem;
+    height: 4.5rem;
+    font-weight: bold;
+    font-size: medium;
+    transition: transform 0.2s ease;
+  }
+
+  &--btn:hover {
+    transform: scale(1.1);
+  }
+  &--btn:active {
+    background-color: $color-pink-light;
+    color: white;
+  }
+}
