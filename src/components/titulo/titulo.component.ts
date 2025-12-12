@@ -43,6 +43,11 @@ export class TituloComponent {
       // Simular llamada a API
       console.log('Datos del formulario:', this.loginData);
 
+      if (this.loginData) {
+        console.log('valido el valor de credenciales');
+
+      }
+
       // Aquí iría tu llamada al servicio de autenticación
       this.authenticateUser(this.loginData);
     }
