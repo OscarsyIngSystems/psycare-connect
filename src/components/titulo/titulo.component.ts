@@ -27,6 +27,7 @@ export class TituloComponent {
     password: ''
   };
 
+  isAutenticated = false;
   // Patterns para validación
   private emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   private passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -89,26 +90,28 @@ export class TituloComponent {
 
   private authenticateUser(loginData: any) {
     // Simular llamada a API
-    setTimeout(() => {
 
-      if (this.loginData.password == 'Lord86901121') {
-        console.log('usuario autenticado');
-        this.router.navigate(['/admin']);
-      } else {
-        this.lordAlert.showToast('Credenciales inválidas', 'error');
-      }
-      // Aquí iría tu lógica real de autenticación
-      // this.authService.login(loginData).subscribe({
-      //   next: (response) => this.handleLoginSuccess(response),
-      //   error: (error) => this.handleLoginError(error)
-      // });
 
-      this.isSubmitting = false;
-      this.resetForm();
-      // Cerrar modal después de login exitoso (simulado)
-      this.closeModal();
+    if (this.loginData.password == 'Lord86901121') {
+      console.log('usuario autenticado');
+      this.isAutenticated = true;
+      sessionStorage.setItem('accesoRedireccion', 'true');
+      this.router.navigate(['/admin']);
+    } else {
+      this.lordAlert.showModal('Error', 'Credenciales inválidas. Por favor, inténtalo de nuevo.', 'error');
+    }
+    // Aquí iría tu lógica real de autenticación
+    // this.authService.login(loginData).subscribe({
+    //   next: (response) => this.handleLoginSuccess(response),
+    //   error: (error) => this.handleLoginError(error)
+    // });
 
-    }, 1500);
+    this.isSubmitting = false;
+    this.resetForm();
+    // Cerrar modal después de login exitoso (simulado)
+    this.closeModal();
+
+
   }
 
 
@@ -152,5 +155,14 @@ export class TituloComponent {
   // Toggle para mostrar/ocultar contraseña
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
+  }
+
+
+  logout() {
+    // Lógica para cerrar sesión
+    console.log('Cerrando sesión...');
+    this.isAutenticated = false;
+    // Aquí puedes agregar la lógica para limpiar tokens, redirigir, etc.
+    this.router.navigate(['/']);
   }
 }

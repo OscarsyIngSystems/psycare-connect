@@ -18,6 +18,14 @@ img {
   transform: scale(1.1);
 }
 
+.logout {
+  transition: transform 0.2s ease;
+}
+
+.logout:hover {
+  transform: scale(1.1);
+}
+
 .divisor {
   // border-bottom: solid 0.3em #851848;
   width: 90%;

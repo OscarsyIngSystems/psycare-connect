@@ -26,9 +26,9 @@
     "bootstrap-icons": "^1.13.1",
     "rxjs": "~7.8.0",
     "sass": "^1.93.3",
+    "sweetalert2": "^11.26.4",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.3",
-    "sweetalert2": "^11.0.0"
+    "zone.js": "~0.14.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.1.3",
