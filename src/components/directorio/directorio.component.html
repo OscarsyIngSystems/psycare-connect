@@ -34,8 +34,7 @@
           >
             <a
               href="#"
-              (click)="verDetalle(instituto)"
-              [routerLink]="['/detalles']"
+              (click)="verDetalle(instituto); $event.preventDefault()"
               class="card__side--btn-text"
               >Ver Detalles &zigrarr;</a
             >

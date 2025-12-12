@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { registros } from '../../assets/directorio.json';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { LordAlertService } from '../lord-alert/service/lord-alert.service';
 
 @Component({
   selector: 'app-directorio',
@@ -14,7 +15,10 @@ export class DirectorioComponent implements OnInit {
 
   scroll: any;
   position: any;
-  constructor() {
+
+
+
+  constructor(private router: Router, private lordAlert: LordAlertService) {
     this.institutos = registros;
 
   }
@@ -52,6 +56,10 @@ export class DirectorioComponent implements OnInit {
     localStorage.setItem('scrollPos', JSON.stringify(this.scroll));
     console.log(institutoSeleccionado, 'Seleciona instituto');
     localStorage.setItem('instSelect', JSON.stringify(institutoSeleccionado));
+
+    sessionStorage.setItem('accesoRedireccion', 'true');
+    this.router.navigate(['/detalles']);
+
   }
 
 
