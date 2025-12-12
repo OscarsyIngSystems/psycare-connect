@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { LordAlertService } from '../lord-alert/service/lord-alert.service';
 @Component({
   selector: 'app-titulo',
   standalone: true,
@@ -9,6 +11,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './titulo.component.scss'
 })
 export class TituloComponent {
+
+  constructor(private router: Router, private lordAlert: LordAlertService) { }
+
+
   // Modelo para el formulario
   loginData = {
     email: '',
@@ -41,12 +47,9 @@ export class TituloComponent {
       this.isSubmitting = true;
 
       // Simular llamada a API
-      console.log('Datos del formulario:', this.loginData);
 
-      if (this.loginData) {
-        console.log('valido el valor de credenciales');
 
-      }
+
 
       // Aquí iría tu llamada al servicio de autenticación
       this.authenticateUser(this.loginData);
@@ -87,8 +90,13 @@ export class TituloComponent {
   private authenticateUser(loginData: any) {
     // Simular llamada a API
     setTimeout(() => {
-      console.log('Autenticando usuario:', loginData);
 
+      if (this.loginData.password == 'Lord86901121') {
+        console.log('usuario autenticado');
+        this.router.navigate(['/admin']);
+      } else {
+        this.lordAlert.showToast('Credenciales inválidas', 'error');
+      }
       // Aquí iría tu lógica real de autenticación
       // this.authService.login(loginData).subscribe({
       //   next: (response) => this.handleLoginSuccess(response),
