@@ -1,0 +1,103 @@
+@use "../../sass/variables" as *;
+
+%btn-base {
+  background-color: $color-pink-dark;
+  color: white;
+  height: 4.5rem;
+  font-weight: bold;
+  font-size: medium;
+  transition: transform 0.2s ease;
+}
+
+.container__form{
+  margin-top: 5rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+
+  &--title {
+    color: $color-green-table;
+  }
+  &--subtitle {
+    color: $color-blue-dark;
+  }
+  &--label {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+      &:has(span) {
+      font-weight: bold;
+    }
+  }
+  &--required {
+    color: $color-red;
+  }
+  &--hint {
+    color: $color-dark-grey;
+    font-style: italic;
+  }
+  &--module {
+    padding-top: 0.5rem;
+  }
+  &--col {
+    display: flex;
+    flex-direction: column;
+  }
+  &--btn-group {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 3rem;
+    &:has(span) {
+      font-weight: bold;
+    }
+  }
+  &--radio-option {
+    padding: 0 1rem;
+  }
+  &--radio-option input[type='radio'] {
+    accent-color: $color-pink-dark;
+  }
+  &--btn {
+    @extend %btn-base;
+    width: 16rem;
+    margin: 1rem 3rem;
+  }
+  &--btn-large {
+    @extend %btn-base;
+    width: 30rem;
+  }
+  &--btn,
+  &--btn-large,
+  &--btn-cancelar,
+  &--btn-eliminar {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  &--btn,
+  &--btn-large {
+    &:active {
+      background-color: $color-pink-light;
+      color: white;
+    }
+  }
+  &--btn-cancelar {
+    background-color: white;
+    color: $color-darker-grey;
+    height: 4rem;
+    width: 16rem;
+    font-weight: bold;
+    font-size: medium;
+    transition: transform 0.2s ease;
+    border: 2px solid $color-darker-grey;
+  }
+  &--btn-eliminar {
+    background-color: $color-red;
+    color: white;
+    height: 4rem;
+    width: 5rem;
+    font-weight: bold;
+    font-size: medium;
+    transition: transform 0.2s ease;
+    margin: 2rem;
+  }
+}
