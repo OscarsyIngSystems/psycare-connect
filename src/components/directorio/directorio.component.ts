@@ -54,6 +54,7 @@ export class DirectorioComponent implements OnInit {
     this.scroll = this.getScrollPosition();
 
     localStorage.setItem('scrollPos', JSON.stringify(this.scroll));
+
     console.log(institutoSeleccionado, 'Seleciona instituto');
     localStorage.setItem('instSelect', JSON.stringify(institutoSeleccionado));
 

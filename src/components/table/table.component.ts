@@ -91,7 +91,7 @@ export class TableComponent {
 
 
 
-  verDetalles(institucion: Institucion) {
+  eliminarInstituto(institucion: Institucion) {
     console.log('Ver detalles:', institucion);
     // Tu lógica para ver detalles
   }
