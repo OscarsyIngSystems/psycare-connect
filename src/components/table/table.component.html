@@ -1,4 +1,3 @@
-<!-- En tu componente Angular -->
 <div class="card-table-container">
   <div class="table-card">
     <table class="styled-table">
@@ -20,7 +19,9 @@
           </td>
           <td>
             <div class="descripcion-content">
-              <span class="descripcion-text">{{ institucion.descipcion }}</span>
+              <span class="descripcion-text">{{
+                institucion.descripcion
+              }}</span>
               @if (institucion.direccion && institucion.direccion.length > 0) {
               <div class="direccion-info">
                 <span class="direccion-icon">📍</span>
@@ -49,6 +50,8 @@
                   src="../../assets/editar.gif"
                   alt=""
                   srcset=""
+                  data-bs-toggle="modal"
+                  data-bs-target="#editCreateModal"
                 />
               </span>
             </button>
@@ -70,5 +73,38 @@
         }
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- MODAL PARA EDITAR INSTITUCIÓN| CREACIÓN -->
+
+<div
+  class="modal fade modal-edit-create"
+  id="editCreateModal"
+  tabindex="-1"
+  aria-labelledby="editCreateModal"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- FORM DANIEL -->
+        <app-form
+          (closeModalEvent)="onFormCloseModal()"
+          [institutoSeleccionado]="institutoSelectado()"
+        />
+      </div>
+    </div>
   </div>
 </div>

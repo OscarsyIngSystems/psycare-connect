@@ -1,6 +1,8 @@
 <div class="container__form">
   <div class="modal-header">
-    <h1 class="container__form--title">Agregar Nuevo Instituto</h1>
+    <h1 class="container__form--title">
+      {{ institutoSeleccionado ? "Editar Instituto" : "Nuevo Instituto" }}
+    </h1>
   </div>
   <div class="modal-body">
     <form [formGroup]="form" (ngSubmit)="submit()">
@@ -8,48 +10,65 @@
         <h2 class="container__form--subtitle">Información Basica</h2>
         <label class="container__form--label">
           <div>
-            <span> Nombre del instituto <span class="container__form--required">*</span></span>
+            <span>
+              Nombre del instituto
+              <span class="container__form--required">*</span></span
+            >
           </div>
-          <input formControlName="nombre">
-          <small class="container__form--hint">Ej. HOSPITALITO GUSTAVO GUERRERO A.C.</small>
+          <input formControlName="nombre" />
+          <small class="container__form--hint"
+            >Ej. HOSPITALITO GUSTAVO GUERRERO A.C.</small
+          >
         </label>
       </div>
       <div class="container__form--module">
         <label class="container__form--label">
           <div>
-          <span>Descripción<span class="container__form--required">*</span></span>
+            <span
+              >Descripción<span class="container__form--required">*</span></span
+            >
           </div>
           <textarea formControlName="descripcion"> </textarea>
-          <small class="container__form--hint">Ej. El Consejo Ciudadano ofrece apoyo psicológico y jurídico
-            a la comunidad LGBTTTI+ en toda la república.</small>
+          <small class="container__form--hint"
+            >Ej. El Consejo Ciudadano ofrece apoyo psicológico y jurídico a la
+            comunidad LGBTTTI+ en toda la república.</small
+          >
         </label>
       </div>
       <div class="container__form--module">
         <h2 class="container__form--subtitle">Direcciones</h2>
         <label class="container__form--label">
-          <select formControlName="direccion">
-            <option value="" disabled>Selecciona una dirección</option>
-          </select>
+          <textarea formControlName="direccion"> </textarea>
           <div>
-            <small class="container__form--hint">Ej. Benito Juárez: Tintoreto 39, Santa María Nonoalco, Benito
-              Juárez Alcaldía...</small>
-            <button class="btn container__form--btn-eliminar"><i class="bi bi-trash"></i></button>
+            <small class="container__form--hint"
+              >Ej. Benito Juárez: Tintoreto 39, Santa María Nonoalco, Benito
+              Juárez Alcaldía...</small
+            >
+            <button class="btn container__form--btn-eliminar">
+              <i class="bi bi-trash"></i>
+            </button>
           </div>
-          <button class="btn container__form--btn-large">+ Agregar otra dirección</button>
+          <button class="btn container__form--btn-large">
+            + Agregar otra dirección
+          </button>
         </label>
       </div>
-      <hr>
+      <hr />
       <div class="container__form--module">
         <h2 class="container__form--subtitle">Contactos</h2>
         <label class="container__form--label">
-          <select formControlName="contacto">
-            <option value="" disabled>Selecciona un contacto</option>
-          </select>
+          <textarea formControlName="contacto"> </textarea>
           <div>
-            <small class="container__form--hint">Ej. Línea Nacional Diversidad Segura: 800 - 000 - 5428</small>
-            <button class="btn container__form--btn-eliminar"><i class="bi bi-trash"></i></button>
+            <small class="container__form--hint"
+              >Ej. Línea Nacional Diversidad Segura: 800 - 000 - 5428</small
+            >
+            <button class="btn container__form--btn-eliminar">
+              <i class="bi bi-trash"></i>
+            </button>
           </div>
-          <button class="btn container__form--btn-large">+ Agregar otro contacto</button>
+          <button class="btn container__form--btn-large">
+            + Agregar otro contacto
+          </button>
         </label>
       </div>
       <div class="container__form--module">
@@ -57,7 +76,7 @@
           <div>
             <span>Correo electrónico</span>
           </div>
-          <input formControlName="correo">
+          <input formControlName="correo" />
         </label>
       </div>
       <div class="container__form--module">
@@ -66,12 +85,14 @@
           <div class="row">
             <div class="col container__form--col">
               <label class="container__form--label">
-              <div>
-                  <span>Iframe
-                    <span class="container__form--required">*</span></span>
-              </div>
-              <input formControlName="iframe">
-              <small class="container__form--hint">Ej. https://imagen/</small>
+                <div>
+                  <span
+                    >Iframe
+                    <span class="container__form--required">*</span></span
+                  >
+                </div>
+                <textarea formControlName="iframe"> </textarea>
+                <small class="container__form--hint">Ej. https://imagen/</small>
               </label>
             </div>
             <div class="col container__form--col">
@@ -79,11 +100,11 @@
                 <span> Estado </span>
                 <div>
                   <label class="container__form--radio-option">
-                    <input type="radio" formControlName="estado" value="1"/>
+                    <input type="radio" formControlName="estado" value="1" />
                     <span> Activo </span>
                   </label>
                   <label class="container__form--radio-option">
-                    <input type="radio" formControlName="estado" value="0"/>
+                    <input type="radio" formControlName="estado" value="0" />
                     <span> Inactivo </span>
                   </label>
                 </div>
@@ -96,16 +117,34 @@
         <h2 class="container__form--subtitle">Proceso de Atención</h2>
         <label class="container__form--label">
           <div>
-            <span> Proceso de atención <span class="container__form--required">*</span></span>
+            <span>
+              Proceso de atención
+              <span class="container__form--required">*</span></span
+            >
           </div>
-          <textarea formControlName="atencion"> </textarea>
-          <small class="container__form--hint">Ej. Llamar para solicitar cita.</small>
+          <textarea formControlName="proceso"> </textarea>
+          <small class="container__form--hint"
+            >Ej. Llamar para solicitar cita.</small
+          >
         </label>
       </div>
 
-      <button type="button" class="btn container__form--btn-cancelar">X Cancelar</button>
-      <button type="submit" class="btn container__form--btn" [disabled]="form.invalid">
-        Guardar Instituto</button>
+      <div class="d-flex justify-content-center align-content-center">
+        <button
+          (click)="onCloseModal()"
+          type="button"
+          class="btn container__form--btn-cancelar"
+        >
+          X Cancelar
+        </button>
+        <button
+          type="submit"
+          class="btn container__form--btn"
+          [disabled]="form.invalid"
+        >
+          Guardar Instituto
+        </button>
+      </div>
     </form>
   </div>
 </div>
