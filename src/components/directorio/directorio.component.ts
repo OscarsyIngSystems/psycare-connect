@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { registros } from '../../assets/directorio.json';
+// import { registros } from '../../assets/directorio.json';
+import directorioJson from '../../assets/directorio.json';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { LordAlertService } from '../lord-alert/service/lord-alert.service';
 
@@ -12,14 +13,15 @@ import { LordAlertService } from '../lord-alert/service/lord-alert.service';
 })
 export class DirectorioComponent implements OnInit {
   institutos;
-
+  registros: any = [];
   scroll: any;
   position: any;
 
 
 
   constructor(private router: Router, private lordAlert: LordAlertService) {
-    this.institutos = registros;
+    this.registros = directorioJson.registros;
+    this.institutos = this.registros;
 
   }
 

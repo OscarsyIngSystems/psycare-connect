@@ -10,8 +10,8 @@ describe('DetallesComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DetallesComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(DetallesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -21,3 +21,4 @@ describe('DetallesComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
