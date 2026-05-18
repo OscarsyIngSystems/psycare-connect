@@ -1,3 +1,155 @@
+# 🎨 Front End - Directorio de Instituciones
+
+Aplicación Angular para la gestión y visualización de instituciones de salud mental.
+
+## 🚀 Tecnologías Frontend
+
+| Tecnología          | Versión | Descripción                       |
+| ------------------- | ------- | --------------------------------- |
+| **Angular**         | 17.1.0  | Framework principal               |
+| **Bootstrap**       | 5.3.8   | Librería de estilos y componentes |
+| **Bootstrap Icons** | 1.13.1  | Iconografía                       |
+| **Sass**            | 1.93.3  | Preprocesador CSS                 |
+| **Animate.css**     | 4.1.1   | Animaciones                       |
+| **SweetAlert2**     | 11.26.4 | Modales y alertas                 |
+| **RxJS**            | 7.8.0   | Programación reactiva             |
+| **TypeScript**      | 5.3.2   | Lenguaje principal                |
+
+---
+
+### 🔧 Instalación y Ejecución Frontend
+
+### Requisitos Previos
+
+Node.js 18+ o 20+
+
+Angular CLI 17
+
+### Instalación
+
+```bash
+# Clonar el repositorio
+git clone <tu-repositorio>
+cd directorio
+
+# Instalar dependencias
+npm install
+
+# Instalar Angular CLI globalmente (opcional)
+npm install -g @angular/cli
+```
+
+### Ejecutar en desarrollo
+
+```bash
+# Servidor de desarrollo
+ng serve
+
+# O con npm
+npm start
+
+# Abrir en navegador
+# http://localhost:4200
+```
+
+### Compilar para producción
+
+```bash
+# Build producción
+ng build --prod
+
+# Build con configuración específica
+npm run build:prod
+```
+
+### 🌍 Variables de Entorno Frontend
+
+### environment.ts (Desarrollo)
+
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: "http://localhost:8080/api",
+};
+```
+
+### environment.prod.ts (Producción)
+
+```typescript
+export const environment = {
+  production: true,
+  apiUrl: "https://directorio-backend-api.onrender.com/api",
+};
+```
+
+### 📝 Comandos Útiles Frontend
+
+```bash
+# Desarrollo
+ng serve                 # Levantar servidor
+ng serve --open          # Abrir en navegador
+ng serve --port 4300     # Puerto personalizado
+
+# Build
+ng build                 # Build desarrollo
+ng build --prod          # Build producción
+ng build --configuration production --base-href /
+
+# Tests
+ng test                  # Ejecutar tests
+ng test --watch=false    # Tests una sola vez
+ng test --code-coverage  # Con cobertura
+
+# Linting
+ng lint                  # Verificar código
+
+# Actualización
+ng update                # Actualizar dependencias
+```
+
+### 🔗 Integración con Backend
+
+#### Configuración de CORS en Backend
+
+##### Asegurar que el backend permita peticiones desde Vercel:
+
+```java
+@CrossOrigin(origins = "https://tu-frontend.vercel.app")
+Interceptores HTTP
+```
+
+```typescript
+// auth.interceptor.ts
+import { HttpInterceptor, HttpRequest, HttpHandler } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const token = sessionStorage.getItem("token");
+
+    if (token) {
+      const cloned = req.clone({
+        headers: req.headers.set("Authorization", `Bearer ${token}`),
+      });
+      return next.handle(cloned);
+    }
+    return next.handle(req);
+  }
+}
+```
+
+---
+
+> ### 🔗 **Enlaces del Proyecto**
+>
+> | Recurso              | Enlace                                                                                                     |
+> | -------------------- | ---------------------------------------------------------------------------------------------------------- |
+> | 📦 **GitHub-Front**  | [github.com/OscarsyIngSystems/psycare-connect](https://github.com/OscarsyIngSystems/psycare-connect)       |
+> | 🌍 **Vercel**        | [psycare-connect.vercel.app](https://psycare-connect.vercel.app)                                           |
+> | 📦 **GitHub-Back**   | [github.com/OscarsyIngSystems/institutos-backend](https://github.com/OscarsyIngSystems/institutos-backend) |
+> | 📚 **Documentación** | _(próximamente)_                                                                                           |
+
 # API Directorio de Institutos
 
 Backend para el Directorio de Instituciones con autenticación JWT.
@@ -52,6 +204,10 @@ cd backend
 
 # Construir y levantar los contenedores
 docker-compose up --build
+```
+
+```
+
 ```
 
 ### 💻 Sin Docker (desarrollo local)
@@ -363,3 +519,7 @@ backend/
 ### 📞 Soporte
 
 Para soporte o dudas, contactar al administrador del sistema.
+
+```
+
+```
