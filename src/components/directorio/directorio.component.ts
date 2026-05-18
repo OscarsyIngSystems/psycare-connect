@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { registros } from '../../assets/directorio.json';
+
 import directorioJson from '../../assets/directorio.json';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { LordAlertService } from '../lord-alert/service/lord-alert.service';
@@ -38,12 +38,12 @@ export class DirectorioComponent implements OnInit {
       this.position = JSON.parse(posStr);
       console.log(this.position, 'POSITION');
 
-      // Usar setTimeout para asegurar que el DOM esté listo
+
       setTimeout(() => {
         window.scrollTo({
           top: this.position.y,
           left: this.position.x,
-          behavior: 'smooth' // 'smooth' para animación suave
+          behavior: 'smooth'
         });
         console.log('Scroll position restored');
       }, 100);

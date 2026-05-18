@@ -16,7 +16,7 @@ export class FormComponent implements OnInit {
 
 
   @Input() institutoSeleccionado: Institucion | null = null;
-  // @Input() close?: () => void;
+
 
   @Output() closeModalEvent = new EventEmitter<void>();
   form!: FormGroup;
@@ -88,13 +88,10 @@ export class FormComponent implements OnInit {
   }
 
   onCloseModal(): void {
-    // Opción A: Emitir evento
+
     this.closeModalEvent.emit();
 
-    // Opción B: Llamar función si existe
-    // if (this.closeModalFn) {
-    //   this.closeModalFn();
-    // }
+
   }
 
 

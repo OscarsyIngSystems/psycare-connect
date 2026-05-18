@@ -15,13 +15,13 @@ export class TituloComponent {
   constructor(private router: Router, private lordAlert: LordAlertService) { }
 
 
-  // Modelo para el formulario
+
   loginData = {
     email: '',
     password: ''
   };
 
-  // Estados de validación
+
   formErrors = {
     email: '',
     password: ''
@@ -47,12 +47,11 @@ export class TituloComponent {
     if (isValid) {
       this.isSubmitting = true;
 
-      // Simular llamada a API
 
 
 
 
-      // Aquí iría tu llamada al servicio de autenticación
+
       this.authenticateUser(this.loginData);
     }
   }
@@ -79,17 +78,13 @@ export class TituloComponent {
       this.formErrors.password = 'La contraseña debe tener al menos 6 caracteres';
       isValid = false;
     }
-    // Descomenta si quieres usar el pattern más estricto:
-    // else if (!this.passwordPattern.test(this.loginData.password)) {
-    //   this.formErrors.password = 'La contraseña debe contener al menos una mayúscula, una minúscula, un número y un carácter especial';
-    //   isValid = false;
-    // }
+
 
     return isValid;
   }
 
   private authenticateUser(loginData: any) {
-    // Simular llamada a API
+
 
 
     if (this.loginData.password == 'Lord86901121') {
@@ -100,15 +95,11 @@ export class TituloComponent {
     } else {
       this.lordAlert.showModal('Error', 'Credenciales inválidas. Por favor, inténtalo de nuevo.', 'error');
     }
-    // Aquí iría tu lógica real de autenticación
-    // this.authService.login(loginData).subscribe({
-    //   next: (response) => this.handleLoginSuccess(response),
-    //   error: (error) => this.handleLoginError(error)
-    // });
+
 
     this.isSubmitting = false;
     this.resetForm();
-    // Cerrar modal después de login exitoso (simulado)
+    // Cerrar modal después de login exitoso
     this.closeModal();
 
 
@@ -135,7 +126,7 @@ export class TituloComponent {
     this.isSubmitting = false;
   }
 
-  // Validación en tiempo real (opcional)
+  // Validación en tiempo real
   onEmailChange() {
     if (this.loginData.email && !this.emailPattern.test(this.loginData.email)) {
       this.formErrors.email = 'Formato de email inválido';
@@ -162,7 +153,7 @@ export class TituloComponent {
     // Lógica para cerrar sesión
     console.log('Cerrando sesión...');
     this.isAutenticated = false;
-    // Aquí puedes agregar la lógica para limpiar tokens, redirigir, etc.
+
     this.router.navigate(['/']);
   }
 }
