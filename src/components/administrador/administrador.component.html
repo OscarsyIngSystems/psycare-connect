@@ -1,3 +1,4 @@
+<!-- administrador.component.html -->
 <section>
   <div class="container container__admin-institutos">
     <div class="row">
@@ -8,11 +9,20 @@
         data-bs-toggle="modal"
         data-bs-target="#editCreateModal"
         class="btn container__admin-institutos--btn"
+        (click)="resetForm()"
       >
         + Agregar
       </button>
     </div>
 
-    <app-table />
+    <app-table
+      [instituciones]="institutos"
+      [error]="error"
+      [loading]="loading"
+      (editar)="handleEditar($event)"
+      (eliminar)="handleEliminar($event)"
+      (guardar)="handleSave($event)"
+      (reintentar)="handleReintentar()"
+    />
   </div>
 </section>

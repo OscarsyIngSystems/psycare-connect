@@ -1,106 +1,129 @@
+<!-- table.component.html -->
 <div class="card-table-container">
   <div class="table-card">
-    <table class="styled-table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Dirección</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (institucion of instituciones; track institucion.id) {
+    @if (isLoading()) {
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+    } @else if (hasError()) {
+      <!-- Estado de error -->
+      <div class="empty-state error-state">
+        <span class="empty-icon">😵</span>
+        <p class="empty-title">¡Oops! Algo salió mal</p>
+        <p class="empty-text">{{ error }}</p>
+        <button class="retry-btn" (click)="onReintentar()">
+          <span class="btn-icon">🔄</span>
+          Reintentar
+        </button>
+      </div>
+    } @else if (!hasData()) {
+      <!-- Estado vacío -->
+      <div class="empty-state">
+        <span class="empty-icon">📭</span>
+        <p class="empty-title">No hay institutos registrados</p>
+        <p class="empty-text">Haz clic en "+ Agregar" para crear uno nuevo</p>
+      </div>
+    } @else {
+      <!-- Tabla con datos -->
+      <table class="styled-table">
+        <thead>
           <tr>
-            <td class="nombre-cell">
-              <div class="nombre-content">
-                <span class="table_name">{{ institucion.nombre }}</span>
-              </div>
-            </td>
-            <td>
-              <div class="descripcion-content">
-                <span class="descripcion-text">{{
-                  institucion.descripcion
-                }}</span>
-              </div>
-            </td>
-            <td>
-              <div class="direccion-content">
-                @if (
-                  institucion.direcciones && institucion.direcciones.length > 0
-                ) {
-                  <span class="direccion-icon">📍</span>
-                  <span class="direccion-text">{{
-                    getPrimeraDireccion(institucion)
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Dirección</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (institucion of instituciones; track institucion.id) {
+            <tr>
+              <td class="nombre-cell">
+                <div class="nombre-content">
+                  <span class="table_name">{{ institucion.nombre }}</span>
+                </div>
+              </td>
+              <td>
+                <div class="descripcion-content">
+                  <span class="descripcion-text">{{
+                    institucion.descripcion
                   }}</span>
-                  @if (getNumeroDirecciones(institucion) > 1) {
-                    <span class="direccion-mas"
-                      >+{{ getNumeroDirecciones(institucion) - 1 }} más</span
-                    >
+                </div>
+              </td>
+              <td>
+                <div class="direccion-content">
+                  @if (
+                    institucion.direcciones &&
+                    institucion.direcciones.length > 0
+                  ) {
+                    <span class="direccion-icon">📍</span>
+                    <span class="direccion-text">{{
+                      getPrimeraDireccion(institucion)
+                    }}</span>
+                    @if (getNumeroDirecciones(institucion) > 1) {
+                      <span class="direccion-mas"
+                        >+{{ getNumeroDirecciones(institucion) - 1 }} más</span
+                      >
+                    }
+                  } @else {
+                    <span class="direccion-text text-muted">Sin dirección</span>
                   }
+                </div>
+              </td>
+              <td>
+                @if (institucion.activo) {
+                  <span class="status-badge status-activo">
+                    <span class="status-dot"></span>
+                    Activo
+                  </span>
                 } @else {
-                  <span class="direccion-text text-muted">Sin dirección</span>
+                  <span class="status-badge status-inactivo">
+                    <span class="status-dot"></span>
+                    Inactivo
+                  </span>
                 }
-              </div>
-            </td>
-            <td>
-              @if (institucion.activo) {
-                <span class="status-badge status-activo">
-                  <span class="status-dot"></span>
-                  Activo
-                </span>
-              } @else {
-                <span class="status-badge status-inactivo">
-                  <span class="status-dot"></span>
-                  Inactivo
-                </span>
-              }
-            </td>
-            <td class="actions-cell">
-              <button
-                class="action-btn edit-btn"
-                (click)="editarInstitucion(institucion)"
-                data-bs-toggle="modal"
-                data-bs-target="#editCreateModal"
-                title="Editar instituto"
-              >
-                <span class="edit-icon">
-                  <img
-                    class="img-edit"
-                    src="../../assets/editar.gif"
-                    alt="Editar"
-                  />
-                </span>
-              </button>
-              <button
-                class="action-btn delete-btn"
-                (click)="eliminarInstituto(institucion)"
-                title="Eliminar instituto"
-              >
-                <span class="delete-icon">
-                  <img
-                    class="img-delete"
-                    src="../../assets/eliminar.png"
-                    alt="Eliminar"
-                  />
-                </span>
-              </button>
-            </td>
-          </tr>
-        } @empty {
-          <tr>
-            <td colspan="5" class="text-center py-4">
-              <span class="text-muted">No hay institutos registrados</span>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
+              </td>
+              <td class="actions-cell">
+                <button
+                  class="action-btn edit-btn"
+                  (click)="editarInstitucion(institucion)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editCreateModal"
+                  title="Editar instituto"
+                >
+                  <span class="edit-icon">
+                    <img
+                      class="img-edit"
+                      src="../../assets/editar.gif"
+                      alt="Editar"
+                    />
+                  </span>
+                </button>
+                <button
+                  class="action-btn delete-btn"
+                  (click)="eliminarInstituto(institucion)"
+                  title="Eliminar instituto"
+                >
+                  <span class="delete-icon">
+                    <img
+                      class="img-delete"
+                      src="../../assets/eliminar.png"
+                      alt="Eliminar"
+                    />
+                  </span>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
   </div>
 </div>
 
-<!-- MODAL PARA EDITAR INSTITUCIÓN | CREACIÓN -->
+<!-- MODAL PARA EDITAR/CREAR INSTITUCIÓN -->
 <div
   class="modal fade modal-edit-create"
   id="editCreateModal"

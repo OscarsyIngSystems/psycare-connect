@@ -1,4 +1,5 @@
-import { Component, signal, EventEmitter, Output, Input, OnInit } from '@angular/core';
+// table.component.ts
+import { Component, signal, EventEmitter, Output, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormComponent } from '../form/form.component';
 import { Institucion } from '../../interfaces/institucion';
 import { CommonModule } from '@angular/common';
@@ -11,19 +12,30 @@ import { LordAlertService } from '../lord-alert/service/lord-alert.service';
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
-export class TableComponent {
-  // Signal para el instituto seleccionado
-  institutoSelectado = signal<Institucion | null>(null);
-
-  // Datos de entrada desde el componente padre
+export class TableComponent implements OnChanges {
   @Input() instituciones: Institucion[] = [];
-
-  // Eventos para comunicar con el padre
+  @Input() error: string = ''; // Recibir error del padre
+  @Input() loading: boolean = true; // Recibir estado de carga del padre
   @Output() editar = new EventEmitter<Institucion>();
   @Output() eliminar = new EventEmitter<Institucion>();
   @Output() guardar = new EventEmitter<any>();
+  @Output() reintentar = new EventEmitter<void>(); // Evento para reintentar
+
+  institutoSelectado = signal<Institucion | null>(null);
 
   constructor(private lordAlert: LordAlertService) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['instituciones']) {
+      console.log('Instituciones actualizadas:', this.instituciones);
+    }
+    if (changes['error']) {
+      console.log('Error recibido:', this.error);
+    }
+    if (changes['loading']) {
+      console.log('Loading:', this.loading);
+    }
+  }
 
   /**
    * Editar instituto - abre el modal
@@ -31,22 +43,14 @@ export class TableComponent {
   editarInstitucion(institucion: Institucion): void {
     console.log('Editar:', institucion);
     this.institutoSelectado.set(institucion);
-    // El modal se abre con data-bs-toggle
+    this.editar.emit(institucion);
   }
 
   /**
    * Eliminar instituto con confirmación
    */
   eliminarInstituto(institucion: Institucion): void {
-    this.lordAlert.showModal(
-      '¿Eliminar instituto?',
-      `¿Estás seguro de que deseas eliminar "${institucion.nombre}"? Esta acción no se puede deshacer.`,
-      'warning',
-      () => {
-        // Emitir el evento de eliminación al padre
-        this.eliminar.emit(institucion);
-      }
-    );
+    this.eliminar.emit(institucion);
   }
 
   /**
@@ -54,7 +58,6 @@ export class TableComponent {
    */
   closeModal(): void {
     this.institutoSelectado.set(null);
-    // Cerrar el modal de Bootstrap
     const modalElement = document.getElementById('editCreateModal');
     if (modalElement) {
       const modal = (window as any).bootstrap.Modal.getInstance(modalElement);
@@ -94,5 +97,47 @@ export class TableComponent {
    */
   getNumeroDirecciones(institucion: Institucion): number {
     return institucion.direcciones?.length || 0;
+  }
+
+  /**
+   * Resetear el formulario para nuevo instituto
+   */
+  resetForm(): void {
+    this.institutoSelectado.set(null);
+    const modalElement = document.getElementById('editCreateModal');
+    if (modalElement) {
+      const modal = (window as any).bootstrap.Modal.getInstance(modalElement);
+      if (modal) {
+        modal.hide();
+      }
+    }
+  }
+
+  /**
+   * Manejar el reintento
+   */
+  onReintentar(): void {
+    this.reintentar.emit();
+  }
+
+  /**
+   * Verificar si hay error - RETORNA BOOLEAN EXPLÍCITO
+   */
+  hasError(): boolean {
+    return !!(this.error && this.error.length > 0);
+  }
+
+  /**
+   * Verificar si hay datos
+   */
+  hasData(): boolean {
+    return this.instituciones && this.instituciones.length > 0;
+  }
+
+  /**
+   * Verificar si está cargando
+   */
+  isLoading(): boolean {
+    return this.loading === true;
   }
 }

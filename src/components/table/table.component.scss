@@ -2,9 +2,6 @@
 
 // // Definir variables locales (por si no existen en el archivo de variables)
 $color-pink: #d5538c !default;
-// $color-blue-dark: #2c3e50 !default;
-// $color-green-table: #2e7d32 !default;
-// $color-blue-ligth: #4a90d9 !default;
 
 // Importar variables globales
 @use "../../sass/variables" as *;
@@ -630,85 +627,141 @@ $color-pink: #d5538c !default;
   }
 }
 
-// Dark mode support
+.empty-state {
+  padding: 3rem 1.5rem;
+  text-align: center;
+
+  .empty-icon {
+    font-size: 4rem;
+    color: #dee2e6;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .empty-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+  }
+
+  .empty-text {
+    color: #6c757d;
+    font-size: 0.95rem;
+  }
+}
+
+// Dark mode para empty state
 @media (prefers-color-scheme: dark) {
-  .card-table-container {
-    background: #1a1a2e;
-  }
-
-  .table-card {
-    background: #16213e;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-
-  .styled-table {
-    thead {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  .empty-state {
+    .empty-icon {
+      color: #3a3a5a;
     }
 
-    th {
-      color: #e0e0e0;
-      border-bottom-color: #2a2a4a;
+    .empty-title {
+      color: #b0b0b0;
     }
 
-    tbody tr {
-      border-bottom-color: #2a2a4a;
-
-      &:hover {
-        background-color: #1a1a3e;
-      }
-    }
-
-    td {
-      color: #e0e0e0;
+    .empty-text {
+      color: #808080;
     }
   }
+}
 
-  .descripcion-text {
-    color: #b0b0b0;
+// table.component.scss - Agregar al final
+
+.error-state {
+  .empty-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+    animation: shake 0.5s ease-in-out;
   }
 
-  .direccion-text {
-    color: #b0b0b0;
+  .empty-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #dc3545;
+    margin-bottom: 0.5rem;
   }
 
-  .direccion-mas {
-    background: #2a2a4a;
-    color: #b0b0b0;
+  .empty-text {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.retry-btn {
+  background: linear-gradient(135deg, #d5538c 0%, #c44a7c 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(213, 83, 140, 0.3);
+
+  &:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(213, 83, 140, 0.4);
   }
 
-  .modal .modal-header {
-    background: #1a1a2e;
-    border-bottom-color: #2a2a4a;
+  &:active {
+    transform: translateY(0) scale(0.97);
+  }
 
-    .modal-title {
-      color: #e0e0e0;
+  .btn-icon {
+    display: inline-block;
+    animation: spinIcon 3s linear infinite;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-10px);
+  }
+  40% {
+    transform: translateX(10px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes spinIcon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Dark mode para error state
+@media (prefers-color-scheme: dark) {
+  .error-state {
+    .empty-title {
+      color: #ef5350;
     }
-  }
 
-  .modal .modal-content {
-    background: #16213e;
-  }
-
-  .status-badge.status-activo {
-    background: #1a3a1a;
-    border-color: #2a5a2a;
-    color: #81c784;
-  }
-
-  .status-badge.status-inactivo {
-    background: #3a1a1a;
-    border-color: #5a2a2a;
-    color: #ef9a9a;
-  }
-
-  .nombre-content .table_name {
-    color: #81c784;
-  }
-
-  .action-btn {
-    &:hover {
-      background: rgba(255, 255, 255, 0.05);
+    .empty-text {
+      color: #b0b0b0;
     }
   }
 }
