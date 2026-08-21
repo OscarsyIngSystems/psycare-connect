@@ -59,40 +59,35 @@ export class AdministradorComponent implements OnInit {
     console.log('Resetear formulario para nuevo instituto');
   }
 
-  /**
-   * ✅ NUEVO: Convierte las direcciones al formato correcto
-   */
-  private formatearDirecciones(direcciones: any[]): any[] {
-    if (!direcciones || direcciones.length === 0) {
-      return [];
-    }
-
-    // Si ya son objetos con propiedad "direccion", devolverlos tal cual
-    if (typeof direcciones[0] === 'object' && direcciones[0].direccion) {
-      return direcciones;
-    }
-
-    // Si son strings, convertirlos a objetos
-    return direcciones.map(dir => ({
-      direccion: dir
-    }));
+private formatearDirecciones(direcciones: any[]): any[] {
+  if (!direcciones || direcciones.length === 0) {
+    return [];
   }
 
-  /**
-   * Maneja la creación o actualización de un instituto
-   */
-  handleSave(event: any): void {
-    const { data, activo } = event;
+  // Si ya son objetos con propiedad "direccion", devolverlos tal cual
+  if (typeof direcciones[0] === 'object' && direcciones[0].direccion) {
+    return direcciones;
+  }
 
-    // ✅ Formatear las direcciones antes de enviar
-    const dataFormateada = {
-      ...data,
-      direcciones: this.formatearDirecciones(data.direcciones || [])
-    };
+  // Si son strings, convertirlos a objetos
+  return direcciones.map(dir => ({
+    direccion: dir
+  }));
+}
 
-    console.log('📤 Datos a enviar:', dataFormateada);
+// ✅ En handleSave, formatear las direcciones
+handleSave(event: any): void {
+  const { data, activo } = event;
 
-    if (data.id) {
+  // ✅ Formatear las direcciones
+  const dataFormateada = {
+    ...data,
+    direcciones: this.formatearDirecciones(data.direcciones || [])
+  };
+
+  console.log('📤 Datos a enviar:', dataFormateada);
+  
+  if (data.id) {
       // Actualizar instituto existente
       this.institutoService.updateInstituto(data.id, dataFormateada).subscribe({
         next: (institutoActualizado: Institucion) => {
