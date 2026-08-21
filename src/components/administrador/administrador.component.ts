@@ -59,36 +59,51 @@ export class AdministradorComponent implements OnInit {
     console.log('Resetear formulario para nuevo instituto');
   }
 
-private formatearDirecciones(direcciones: any[]): any[] {
-  if (!direcciones || direcciones.length === 0) {
-    return [];
+  /**
+   * ✅ Formatear direcciones: eliminar IDs y convertir strings a objetos
+   */
+  private formatearDirecciones(direcciones: any[]): any[] {
+    if (!direcciones || direcciones.length === 0) {
+      return [];
+    }
+
+    return direcciones
+      .filter(dir => dir && dir.direccion && dir.direccion.trim() !== '') // Filtrar vacías
+      .map((dir: any) => {
+        if (typeof dir === 'string') {
+          return { direccion: dir };
+        }
+        // ✅ Eliminar el ID de la dirección para que se cree uno nuevo
+        const { id, ...dirSinId } = dir;
+        return dirSinId;
+      });
   }
 
-  // Si ya son objetos con propiedad "direccion", devolverlos tal cual
-  if (typeof direcciones[0] === 'object' && direcciones[0].direccion) {
-    return direcciones;
-  }
+  /**
+   * ✅ Manejar guardado (crear o actualizar)
+   */
+  handleSave(event: any): void {
+    const { data, activo } = event;
 
-  // Si son strings, convertirlos a objetos
-  return direcciones.map(dir => ({
-    direccion: dir
-  }));
-}
+    // ✅ Formatear direcciones (eliminar IDs)
+    const direccionesFormateadas = this.formatearDirecciones(data.direcciones || []);
 
-// ✅ En handleSave, formatear las direcciones
-handleSave(event: any): void {
-  const { data, activo } = event;
+    // ✅ Si es actualización, mantener el ID en la URL pero enviar sin ID en el body
+    const dataFormateada = {
+      nombre: data.nombre,
+      descripcion: data.descripcion,
+      imagen: data.imagen,
+      contacto: data.contacto,
+      correo: data.correo,
+      proceso: data.proceso,
+      iframe: data.iframe,
+      direcciones: direccionesFormateadas
+    };
 
-  // ✅ Formatear las direcciones
-  const dataFormateada = {
-    ...data,
-    direcciones: this.formatearDirecciones(data.direcciones || [])
-  };
-
-  console.log('📤 Datos a enviar:', dataFormateada);
-  
-  if (data.id) {
-      // Actualizar instituto existente
+    console.log('📤 Datos a enviar:', dataFormateada);
+    
+    if (data.id) {
+      // ✅ Actualizar instituto existente
       this.institutoService.updateInstituto(data.id, dataFormateada).subscribe({
         next: (institutoActualizado: Institucion) => {
           const index = this.institutos.findIndex(i => i.id === data.id);
@@ -99,6 +114,7 @@ handleSave(event: any): void {
             };
           }
           this.lordAlert.showToast('Instituto actualizado exitosamente', 'success');
+          this.cargarInstitutos(); // Recargar para ver cambios
         },
         error: (err: any) => {
           console.error('❌ Error al actualizar instituto:', err);
@@ -107,7 +123,7 @@ handleSave(event: any): void {
         }
       });
     } else {
-      // Crear nuevo instituto
+      // ✅ Crear nuevo instituto
       this.institutoService.createInstituto(dataFormateada).subscribe({
         next: (nuevoInstituto: Institucion) => {
           const institutoConEstado = {
