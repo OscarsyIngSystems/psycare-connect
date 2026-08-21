@@ -39,10 +39,10 @@ export class AdministradorComponent implements OnInit {
         }));
         this.loading = false;
         this.error = '';
-        console.log('Institutos cargados:', this.institutos);
+        console.log('✅ Institutos cargados:', this.institutos.length);
       },
       error: (err: any) => {
-        console.error('Error al cargar institutos:', err);
+        console.error('❌ Error al cargar institutos:', err);
         this.loading = false;
         this.error = 'Error al cargar los institutos';
         this.lordAlert.showToast('Error al cargar institutos', 'error');
@@ -60,7 +60,8 @@ export class AdministradorComponent implements OnInit {
   }
 
   /**
-   * ✅ Formatear direcciones: eliminar IDs y convertir strings a objetos
+   * ✅ Formatea las direcciones para enviar al backend
+   * Convierte cualquier formato a { direccion: "texto" }
    */
   private formatearDirecciones(direcciones: any[]): any[] {
     if (!direcciones || direcciones.length === 0) {
@@ -68,42 +69,59 @@ export class AdministradorComponent implements OnInit {
     }
 
     return direcciones
-      .filter(dir => dir && dir.direccion && dir.direccion.trim() !== '') // Filtrar vacías
-      .map((dir: any) => {
-        if (typeof dir === 'string') {
-          return { direccion: dir };
+      .filter(dir => {
+        if (!dir) return false;
+        // Si es string, verificar que no esté vacía
+        if (typeof dir === 'string') return dir.trim() !== '';
+        // Si es objeto, verificar que tenga direccion
+        if (typeof dir === 'object') {
+          const value = dir.direccion || dir.direccion || '';
+          return value && value.trim() !== '';
         }
-        // ✅ Eliminar el ID de la dirección para que se cree uno nuevo
-        const { id, ...dirSinId } = dir;
-        return dirSinId;
-      });
+        return false;
+      })
+      .map((dir: any) => {
+        // Si es string, convertir a objeto
+        if (typeof dir === 'string') {
+          return { direccion: dir.trim() };
+        }
+        // Si es objeto, extraer la dirección y eliminar ID
+        if (typeof dir === 'object') {
+          const direccionValue = dir.direccion || dir.direccion || '';
+          return { direccion: direccionValue.trim() };
+        }
+        return { direccion: '' };
+      })
+      .filter(dir => dir.direccion && dir.direccion !== '');
   }
 
   /**
-   * ✅ Manejar guardado (crear o actualizar)
+   * ✅ Maneja el guardado (crear o actualizar)
    */
   handleSave(event: any): void {
     const { data, activo } = event;
 
-    // ✅ Formatear direcciones (eliminar IDs)
+    console.log('🔍 Datos recibidos:', data);
+
+    // ✅ Formatear direcciones
     const direccionesFormateadas = this.formatearDirecciones(data.direcciones || []);
 
-    // ✅ Si es actualización, mantener el ID en la URL pero enviar sin ID en el body
+    // ✅ Construir objeto a enviar (sin ID)
     const dataFormateada = {
-      nombre: data.nombre,
-      descripcion: data.descripcion,
-      imagen: data.imagen,
-      contacto: data.contacto,
-      correo: data.correo,
-      proceso: data.proceso,
-      iframe: data.iframe,
+      nombre: data.nombre || '',
+      descripcion: data.descripcion || '',
+      imagen: data.imagen || '',
+      contacto: data.contacto || '',
+      correo: data.correo || null,
+      proceso: data.proceso || '',
+      iframe: data.iframe || '',
       direcciones: direccionesFormateadas
     };
 
-    console.log('📤 Datos a enviar:', dataFormateada);
-    
+    console.log('📤 Enviando:', JSON.stringify(dataFormateada, null, 2));
+
     if (data.id) {
-      // ✅ Actualizar instituto existente
+      // ✅ ACTUALIZAR
       this.institutoService.updateInstituto(data.id, dataFormateada).subscribe({
         next: (institutoActualizado: Institucion) => {
           const index = this.institutos.findIndex(i => i.id === data.id);
@@ -113,31 +131,25 @@ export class AdministradorComponent implements OnInit {
               activo: activo
             };
           }
-          this.lordAlert.showToast('Instituto actualizado exitosamente', 'success');
-          this.cargarInstitutos(); // Recargar para ver cambios
+          this.lordAlert.showToast('✅ Instituto actualizado', 'success');
+          this.cargarInstitutos();
         },
         error: (err: any) => {
-          console.error('❌ Error al actualizar instituto:', err);
-          console.error('📄 Detalles del error:', err.error);
-          this.lordAlert.showToast('Error al actualizar el instituto', 'error');
+          console.error('❌ Error al actualizar:', err);
+          this.lordAlert.showToast('Error al actualizar', 'error');
         }
       });
     } else {
-      // ✅ Crear nuevo instituto
+      // ✅ CREAR
       this.institutoService.createInstituto(dataFormateada).subscribe({
         next: (nuevoInstituto: Institucion) => {
-          const institutoConEstado = {
-            ...nuevoInstituto,
-            activo: activo
-          };
-          this.institutos.push(institutoConEstado);
-          this.lordAlert.showToast('Instituto creado exitosamente', 'success');
-          this.cargarInstitutos(); // Recargar para actualizar la lista
+          this.institutos.push({ ...nuevoInstituto, activo: activo });
+          this.lordAlert.showToast('✅ Instituto creado', 'success');
+          this.cargarInstitutos();
         },
         error: (err: any) => {
-          console.error('❌ Error al crear instituto:', err);
-          console.error('📄 Detalles del error:', err.error);
-          this.lordAlert.showToast('Error al crear el instituto', 'error');
+          console.error('❌ Error al crear:', err);
+          this.lordAlert.showToast('Error al crear', 'error');
         }
       });
     }
@@ -146,21 +158,17 @@ export class AdministradorComponent implements OnInit {
   handleEliminar(instituto: Institucion): void {
     this.lordAlert.showModal(
       '¿Eliminar instituto?',
-      `¿Estás seguro de que deseas eliminar "${instituto.nombre}"? Esta acción no se puede deshacer.`,
+      `¿Estás seguro de eliminar "${instituto.nombre}"?`,
       'warning',
       () => {
         this.institutoService.deleteInstituto(instituto.id).subscribe({
           next: () => {
             this.institutos = this.institutos.filter(i => i.id !== instituto.id);
-            this.lordAlert.showModal(
-              '¡Eliminado!',
-              `El instituto "${instituto.nombre}" ha sido eliminado exitosamente`,
-              'success'
-            );
+            this.lordAlert.showModal('¡Eliminado!', 'El instituto fue eliminado', 'success');
           },
           error: (err: any) => {
-            console.error('Error al eliminar instituto:', err);
-            this.lordAlert.showToast('Error al eliminar el instituto', 'error');
+            console.error('Error al eliminar:', err);
+            this.lordAlert.showToast('Error al eliminar', 'error');
           }
         });
       }
@@ -168,6 +176,6 @@ export class AdministradorComponent implements OnInit {
   }
 
   handleEditar(instituto: Institucion): void {
-    console.log('Editar instituto:', instituto);
+    console.log('Editar:', instituto);
   }
 }
