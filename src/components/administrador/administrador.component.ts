@@ -27,9 +27,6 @@ export class AdministradorComponent implements OnInit {
     this.cargarInstitutos();
   }
 
-  /**
-   * Carga todos los institutos desde la API
-   */
   cargarInstitutos(): void {
     this.loading = true;
     this.error = '';
@@ -47,40 +44,38 @@ export class AdministradorComponent implements OnInit {
       error: (err: any) => {
         console.error('Error al cargar institutos:', err);
         this.loading = false;
-
-        // Manejar diferentes códigos de error
-        if (err.status === 500) {
-          this.error = 'Error interno del servidor (500). Por favor, intenta de nuevo más tarde.';
-        } else if (err.status === 404) {
-          this.error = 'No se encontró el recurso. Verifica la URL de la API.';
-        } else if (err.status === 0) {
-          this.error = 'No se pudo conectar con el servidor. Verifica tu conexión a internet.';
-        } else if (err.status === 401) {
-          this.error = 'No autorizado. Verifica tus credenciales.';
-        } else if (err.status === 403) {
-          this.error = 'Acceso denegado. No tienes permisos para ver estos datos.';
-        } else {
-          this.error = `Error ${err.status}: ${err.message || 'Error al cargar los institutos'}`;
-        }
-
+        this.error = 'Error al cargar los institutos';
         this.lordAlert.showToast('Error al cargar institutos', 'error');
       }
     });
   }
 
-  /**
-   * Reintentar cargar los institutos
-   */
   handleReintentar(): void {
     this.lordAlert.showToast('Reintentando carga...', 'info');
     this.cargarInstitutos();
   }
 
-  /**
-   * Resetear el formulario para nuevo instituto
-   */
   resetForm(): void {
     console.log('Resetear formulario para nuevo instituto');
+  }
+
+  /**
+   * ✅ NUEVO: Convierte las direcciones al formato correcto
+   */
+  private formatearDirecciones(direcciones: any[]): any[] {
+    if (!direcciones || direcciones.length === 0) {
+      return [];
+    }
+
+    // Si ya son objetos con propiedad "direccion", devolverlos tal cual
+    if (typeof direcciones[0] === 'object' && direcciones[0].direccion) {
+      return direcciones;
+    }
+
+    // Si son strings, convertirlos a objetos
+    return direcciones.map(dir => ({
+      direccion: dir
+    }));
   }
 
   /**
@@ -89,9 +84,17 @@ export class AdministradorComponent implements OnInit {
   handleSave(event: any): void {
     const { data, activo } = event;
 
+    // ✅ Formatear las direcciones antes de enviar
+    const dataFormateada = {
+      ...data,
+      direcciones: this.formatearDirecciones(data.direcciones || [])
+    };
+
+    console.log('📤 Datos a enviar:', dataFormateada);
+
     if (data.id) {
       // Actualizar instituto existente
-      this.institutoService.updateInstituto(data.id, data).subscribe({
+      this.institutoService.updateInstituto(data.id, dataFormateada).subscribe({
         next: (institutoActualizado: Institucion) => {
           const index = this.institutos.findIndex(i => i.id === data.id);
           if (index !== -1) {
@@ -103,13 +106,14 @@ export class AdministradorComponent implements OnInit {
           this.lordAlert.showToast('Instituto actualizado exitosamente', 'success');
         },
         error: (err: any) => {
-          console.error('Error al actualizar instituto:', err);
+          console.error('❌ Error al actualizar instituto:', err);
+          console.error('📄 Detalles del error:', err.error);
           this.lordAlert.showToast('Error al actualizar el instituto', 'error');
         }
       });
     } else {
       // Crear nuevo instituto
-      this.institutoService.createInstituto(data).subscribe({
+      this.institutoService.createInstituto(dataFormateada).subscribe({
         next: (nuevoInstituto: Institucion) => {
           const institutoConEstado = {
             ...nuevoInstituto,
@@ -117,18 +121,17 @@ export class AdministradorComponent implements OnInit {
           };
           this.institutos.push(institutoConEstado);
           this.lordAlert.showToast('Instituto creado exitosamente', 'success');
+          this.cargarInstitutos(); // Recargar para actualizar la lista
         },
         error: (err: any) => {
-          console.error('Error al crear instituto:', err);
+          console.error('❌ Error al crear instituto:', err);
+          console.error('📄 Detalles del error:', err.error);
           this.lordAlert.showToast('Error al crear el instituto', 'error');
         }
       });
     }
   }
 
-  /**
-   * Maneja la eliminación de un instituto
-   */
   handleEliminar(instituto: Institucion): void {
     this.lordAlert.showModal(
       '¿Eliminar instituto?',
@@ -153,9 +156,6 @@ export class AdministradorComponent implements OnInit {
     );
   }
 
-  /**
-   * Maneja la edición de un instituto
-   */
   handleEditar(instituto: Institucion): void {
     console.log('Editar instituto:', instituto);
   }
