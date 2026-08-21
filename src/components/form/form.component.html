@@ -3,108 +3,215 @@
     <h1 class="container__form--title">
       {{ institutoSeleccionado ? "Editar Instituto" : "Nuevo Instituto" }}
     </h1>
+    <button type="button" class="btn-close" (click)="onCloseModal()"></button>
   </div>
+
   <div class="modal-body">
     <form [formGroup]="form" (ngSubmit)="submit()">
+      <!-- Información Básica -->
       <div class="container__form--module">
-        <h2 class="container__form--subtitle">Información Basica</h2>
+        <h2 class="container__form--subtitle">Información Básica</h2>
+
         <label class="container__form--label">
           <div>
             <span>
               Nombre del instituto
-              <span class="container__form--required">*</span></span
-            >
+              <span class="container__form--required">*</span>
+            </span>
           </div>
-          <input formControlName="nombre" />
-          <small class="container__form--hint"
-            >Ej. HOSPITALITO GUSTAVO GUERRERO A.C.</small
+          <input
+            formControlName="nombre"
+            [class.is-invalid]="nombre?.invalid && nombre?.touched"
+            placeholder="Ingrese el nombre del instituto"
+          />
+          <small
+            class="container__form--hint"
+            *ngIf="nombre?.valid || !nombre?.touched"
           >
+            Ej. HOSPITALITO GUSTAVO GUERRERO A.C.
+          </small>
+          <small
+            class="container__form--error"
+            *ngIf="nombre?.invalid && nombre?.touched"
+          >
+            <span *ngIf="nombre?.errors?.['required']"
+              >El nombre es requerido</span
+            >
+            <span *ngIf="nombre?.errors?.['minlength']"
+              >El nombre debe tener al menos 3 caracteres</span
+            >
+          </small>
         </label>
       </div>
+
+      <!-- Descripción -->
       <div class="container__form--module">
         <label class="container__form--label">
           <div>
-            <span
-              >Descripción<span class="container__form--required">*</span></span
-            >
+            <span>
+              Descripción
+              <span class="container__form--required">*</span>
+            </span>
           </div>
-          <textarea formControlName="descripcion"> </textarea>
-          <small class="container__form--hint"
-            >Ej. El Consejo Ciudadano ofrece apoyo psicológico y jurídico a la
-            comunidad LGBTTTI+ en toda la república.</small
+          <textarea
+            formControlName="descripcion"
+            [class.is-invalid]="descripcion?.invalid && descripcion?.touched"
+            placeholder="Descripción detallada del instituto"
+          ></textarea>
+          <small
+            class="container__form--hint"
+            *ngIf="descripcion?.valid || !descripcion?.touched"
           >
-        </label>
-      </div>
-      <div class="container__form--module">
-        <h2 class="container__form--subtitle">Direcciones</h2>
-        <label class="container__form--label">
-          <textarea formControlName="direccion"> </textarea>
-          <div>
-            <small class="container__form--hint"
-              >Ej. Benito Juárez: Tintoreto 39, Santa María Nonoalco, Benito
-              Juárez Alcaldía...</small
+            Ej. El Consejo Ciudadano ofrece apoyo psicológico y jurídico a la
+            comunidad LGBTTTI+
+          </small>
+          <small
+            class="container__form--error"
+            *ngIf="descripcion?.invalid && descripcion?.touched"
+          >
+            <span *ngIf="descripcion?.errors?.['required']"
+              >La descripción es requerida</span
             >
-            <button class="btn container__form--btn-eliminar">
-              <i class="bi bi-trash"></i>
-            </button>
-          </div>
-          <button class="btn container__form--btn-large">
-            + Agregar otra dirección
-          </button>
+            <span *ngIf="descripcion?.errors?.['minlength']"
+              >La descripción debe tener al menos 10 caracteres</span
+            >
+          </small>
         </label>
       </div>
+
+      <!-- Dirección -->
+      <div class="container__form--module">
+        <h2 class="container__form--subtitle">Dirección</h2>
+        <label class="container__form--label">
+          <div>
+            <span>
+              Dirección
+              <span class="container__form--required">*</span>
+            </span>
+          </div>
+          <textarea
+            formControlName="direccion"
+            [class.is-invalid]="direccion?.invalid && direccion?.touched"
+            placeholder="Ingrese la dirección completa"
+          ></textarea>
+          <small
+            class="container__form--hint"
+            *ngIf="direccion?.valid || !direccion?.touched"
+          >
+            Ej. Benito Juárez: Tintoreto 39, Santa María Nonoalco, Benito Juárez
+            Alcaldía
+          </small>
+          <small
+            class="container__form--error"
+            *ngIf="direccion?.invalid && direccion?.touched"
+          >
+            La dirección es requerida
+          </small>
+        </label>
+      </div>
+
       <hr />
+
+      <!-- Contactos -->
       <div class="container__form--module">
         <h2 class="container__form--subtitle">Contactos</h2>
         <label class="container__form--label">
-          <textarea formControlName="contacto"> </textarea>
           <div>
-            <small class="container__form--hint"
-              >Ej. Línea Nacional Diversidad Segura: 800 - 000 - 5428</small
-            >
-            <button class="btn container__form--btn-eliminar">
-              <i class="bi bi-trash"></i>
-            </button>
+            <span>
+              Contacto
+              <span class="container__form--required">*</span>
+            </span>
           </div>
-          <button class="btn container__form--btn-large">
-            + Agregar otro contacto
-          </button>
+          <textarea
+            formControlName="contacto"
+            [class.is-invalid]="contacto?.invalid && contacto?.touched"
+            placeholder="Teléfonos, WhatsApp u otros medios de contacto"
+          ></textarea>
+          <small
+            class="container__form--hint"
+            *ngIf="contacto?.valid || !contacto?.touched"
+          >
+            Ej. Línea Nacional Diversidad Segura: 800 - 000 - 5428
+          </small>
+          <small
+            class="container__form--error"
+            *ngIf="contacto?.invalid && contacto?.touched"
+          >
+            El contacto es requerido
+          </small>
         </label>
       </div>
+
+      <!-- Correo -->
       <div class="container__form--module">
         <label class="container__form--label">
           <div>
             <span>Correo electrónico</span>
           </div>
-          <input formControlName="correo" />
+          <input
+            formControlName="correo"
+            [class.is-invalid]="correo?.invalid && correo?.touched"
+            placeholder="correo@ejemplo.com"
+            type="email"
+          />
+          <small
+            class="container__form--hint"
+            *ngIf="correo?.valid || !correo?.touched"
+          >
+            Correo electrónico de contacto (opcional)
+          </small>
+          <small
+            class="container__form--error"
+            *ngIf="correo?.invalid && correo?.touched"
+          >
+            <span *ngIf="correo?.errors?.['email']"
+              >Ingrese un correo electrónico válido</span
+            >
+          </small>
         </label>
       </div>
+
+      <!-- Iframe y Estado -->
       <div class="container__form--module">
         <h2 class="container__form--subtitle">Iframe y Estado</h2>
         <div class="container-fluid">
           <div class="row">
-            <div class="col container__form--col">
+            <!-- Iframe -->
+            <div class="col-12 col-md-8 container__form--col">
               <label class="container__form--label">
                 <div>
-                  <span
-                    >Iframe
-                    <span class="container__form--required">*</span></span
-                  >
+                  <span>Iframe del mapa</span>
                 </div>
-                <textarea formControlName="iframe"> </textarea>
-                <small class="container__form--hint">Ej. https://imagen/</small>
+                <textarea
+                  formControlName="iframe"
+                  placeholder="Código iframe del mapa de Google Maps"
+                  rows="3"
+                ></textarea>
+                <small class="container__form--hint">
+                  Ej. Código iframe de Google Maps
+                </small>
               </label>
             </div>
-            <div class="col container__form--col">
+
+            <!-- Estado -->
+            <div class="col-12 col-md-4 container__form--col">
               <div class="container__form--btn-group">
-                <span> Estado </span>
-                <div>
+                <span class="container__form--label-title">Estado</span>
+                <div class="d-flex gap-3">
                   <label class="container__form--radio-option">
-                    <input type="radio" formControlName="estado" value="1" />
+                    <input
+                      type="radio"
+                      formControlName="activo"
+                      [value]="true"
+                    />
                     <span> Activo </span>
                   </label>
                   <label class="container__form--radio-option">
-                    <input type="radio" formControlName="estado" value="0" />
+                    <input
+                      type="radio"
+                      formControlName="activo"
+                      [value]="false"
+                    />
                     <span> Inactivo </span>
                   </label>
                 </div>
@@ -113,36 +220,72 @@
           </div>
         </div>
       </div>
+
+      <!-- Imagen -->
+      <div class="container__form--module">
+        <label class="container__form--label">
+          <div>
+            <span>Imagen (ID)</span>
+          </div>
+          <input
+            formControlName="imagen"
+            placeholder="Ej. 1, 2, 3, 4, 5, 6, 7, 8, 9"
+          />
+          <small class="container__form--hint">
+            Número de imagen a mostrar (opcional)
+          </small>
+        </label>
+      </div>
+
+      <!-- Proceso -->
       <div class="container__form--module">
         <h2 class="container__form--subtitle">Proceso de Atención</h2>
         <label class="container__form--label">
           <div>
             <span>
               Proceso de atención
-              <span class="container__form--required">*</span></span
-            >
+              <span class="container__form--required">*</span>
+            </span>
           </div>
-          <textarea formControlName="proceso"> </textarea>
-          <small class="container__form--hint"
-            >Ej. Llamar para solicitar cita.</small
+          <textarea
+            formControlName="proceso"
+            [class.is-invalid]="proceso?.invalid && proceso?.touched"
+            placeholder="Pasos para obtener el servicio"
+            rows="3"
+          ></textarea>
+          <small
+            class="container__form--hint"
+            *ngIf="proceso?.valid || !proceso?.touched"
           >
+            Ej. Llamar para solicitar cita.
+          </small>
+          <small
+            class="container__form--error"
+            *ngIf="proceso?.invalid && proceso?.touched"
+          >
+            El proceso de atención es requerido
+          </small>
         </label>
       </div>
 
-      <div class="d-flex justify-content-center align-content-center">
+      <!-- Botones -->
+      <div
+        class="d-flex justify-content-center align-content-center gap-3 mt-4"
+      >
         <button
           (click)="onCloseModal()"
           type="button"
           class="btn container__form--btn-cancelar"
         >
-          X Cancelar
+          <i class="bi bi-x-circle"></i> Cancelar
         </button>
         <button
           type="submit"
           class="btn container__form--btn"
           [disabled]="form.invalid"
         >
-          Guardar Instituto
+          <i class="bi bi-save"></i>
+          {{ institutoSeleccionado ? "Actualizar" : "Guardar" }} Instituto
         </button>
       </div>
     </form>

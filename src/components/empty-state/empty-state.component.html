@@ -1,0 +1,47 @@
+<!-- empty-state.component.html -->
+<div class="empty-state-fullscreen">
+  <div class="empty-state-content">
+    <!-- Logo -->
+    <div class="logo-container">
+      <div class="logo-wrapper">
+        <img
+          src="../../assets/LOGO_psicologa.png"
+          alt="Logo"
+          class="logo-image"
+        />
+        <div class="logo-ring"></div>
+      </div>
+    </div>
+
+    <!-- Emoji -->
+    <div class="emoji-container">
+      <span class="emoji">{{ emoji }}</span>
+    </div>
+
+    <!-- Contenido -->
+    <div class="empty-content">
+      <h2 class="empty-title">{{ title }}</h2>
+
+      <p class="empty-message">{{ message }}</p>
+
+      <p class="funny-message">
+        <span class="funny-icon">😄</span>
+        {{ funnyMessage }}
+      </p>
+
+      @if (showButton) {
+        <button class="retry-btn" (click)="onRetry()">
+          <span class="btn-icon">🔄</span>
+          {{ buttonText }}
+        </button>
+      }
+    </div>
+
+    <!-- Decoraciones -->
+    <div class="decoration decoration-1">✨</div>
+    <div class="decoration decoration-2">🌟</div>
+    <div class="decoration decoration-3">🎯</div>
+    <div class="decoration decoration-4">🌈</div>
+    <div class="decoration decoration-5">🎈</div>
+  </div>
+</div>

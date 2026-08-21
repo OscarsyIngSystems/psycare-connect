@@ -1,0 +1,219 @@
+// spinner.component.scss
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.coin-container {
+  perspective: 1200px;
+  width: 120px;
+  height: 120px;
+}
+
+.coin {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: coinFlip 1.5s ease-in-out infinite;
+}
+
+.coin-front,
+.coin-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 8px 32px rgba(213, 83, 140, 0.3),
+    inset 0 -4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.coin-front {
+  background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+  transform: rotateY(0deg);
+  border: 3px solid #d5538c;
+}
+
+.coin-back {
+  background: linear-gradient(145deg, #e9ecef, #f8f9fa);
+  transform: rotateY(180deg);
+  border: 3px solid #d5538c;
+}
+
+.coin-image {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  padding: 8px;
+}
+
+/* Animación de la moneda */
+@keyframes coinFlip {
+  0% {
+    transform: rotateY(0deg) scale(1);
+  }
+  25% {
+    transform: rotateY(180deg) scale(1.05);
+  }
+  50% {
+    transform: rotateY(360deg) scale(1);
+  }
+  75% {
+    transform: rotateY(540deg) scale(1.05);
+  }
+  100% {
+    transform: rotateY(720deg) scale(1);
+  }
+}
+
+/* Sombra animada */
+.coin::before {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: shadowPulse 1.5s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes shadowPulse {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.8);
+    opacity: 0.2;
+  }
+}
+
+.spinner-text {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #495057;
+  margin: 0;
+  animation: textPulse 1.5s ease-in-out infinite;
+  letter-spacing: 1px;
+}
+
+@keyframes textPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Dots animados para "Cargando..." */
+.spinner-text::after {
+  content: "";
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "...";
+  }
+  100% {
+    content: "";
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .coin-container {
+    width: 90px;
+    height: 90px;
+  }
+
+  .coin {
+    width: 90px;
+    height: 90px;
+  }
+
+  .coin-image {
+    width: 75%;
+    height: 75%;
+    padding: 6px;
+  }
+
+  .spinner-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .coin-container {
+    width: 70px;
+    height: 70px;
+  }
+
+  .coin {
+    width: 70px;
+    height: 70px;
+  }
+
+  .coin-image {
+    width: 70%;
+    height: 70%;
+    padding: 4px;
+  }
+
+  .spinner-text {
+    font-size: 0.9rem;
+  }
+}

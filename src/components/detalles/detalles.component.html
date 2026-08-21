@@ -1,250 +1,115 @@
-<section>
-  <div class="nombreClinica animate__animated animate__bounceIn">
-    <h2 id="{{ data.id }}">{{ data.nombre }}</h2>
-  </div>
-
-  <div class="row contenedorPrincipal">
-    <div class="col-6 mapa animate__animated animate__bounceIn">
-      @switch (data.id) { @case (1) {
-      <iframe
-        title="Hospitalito"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120374.25294017581!2d-99.2066493639647!3d19.468695139282104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f95209f01cc9%3A0xf353199459bee287!2sHospitalito%20Gustavo%20Guerrero%20A.%20C.!5e0!3m2!1ses!2smx!4v1722490182777!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (2) {
-      <iframe
-        title="Clínica Especializada Condesa"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.0827060391316!2d-99.18500042478622!3d19.408832181865463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff5dbcc3f335%3A0x3b4168d6b6ed2a0e!2sCl%C3%ADnica%20Especializada%20Condesa!5e0!3m2!1ses!2smx!4v1722494845249!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (3) {
-      <iframe
-        title="Hospital Psiquiátrico Fray Bernardino Álvarez"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.871634484702!2d-99.16323582402156!3d19.287947681960766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce008ab18c81d5%3A0x3f53498b19c098ae!2sHospital%20Psiqui%C3%A1trico%20Fray%20Bernardino%20%C3%81lvarez!5e0!3m2!1ses!2smx!4v1722622226818!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (4) {
-      <iframe
-        title="UMCAP Hospital de Psiquiatria Morelos IMSS"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3761.4833025511116!2d-99.09900582401774!3d19.47783188181126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1fa252bec3f77%3A0x8df3206fda65982e!2sUMCAP%20Hospital%20de%20Psiquiatria%20%22Morelos%22%20IMSS!5e0!3m2!1ses!2smx!4v1722622416926!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (5) {
-      <iframe
-        title="Centro Comunitario de Salud Mental y Adicciones Cuauhtemoc (CECOSAMA Cuauhtémoc)"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.1884364011394!2d-99.1577847240183!3d19.447440781835166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f8db204bffb3%3A0xf3e4608f6f2418!2sCentro%20Comunitario%20de%20Salud%20Mental%20y%20Adicciones%20Cuauhtemoc%20(CECOSAMA%20Cuauht%C3%A9moc)!5e0!3m2!1ses!2smx!4v1722622537677!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (6) {
-      <iframe
-        title="Centro Comunitario de Salud Mental y Adicciones (CECOSAMA Zacatenco)"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3760.854140689074!2d-99.13136082401711!3d19.50491018178993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1fa382555d677%3A0xfca7d34fac52fa32!2sCentro%20Comunitario%20de%20Salud%20Mental%20y%20Adicciones%20(CECOSAMA%20Zacatenco)!5e0!3m2!1ses!2smx!4v1722622640450!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (7) {
-      <iframe
-        title="Instituto Nacional de Psiquiatría Ramón de la Fuente Muñiz"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.767809235276!2d-99.15543922402153!3d19.29246098195723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce005641628993%3A0x6c4cdf6ecd7f4e63!2sInstituto%20Nacional%20de%20Psiquiatr%C3%ADa%20Ram%C3%B3n%20de%20la%20Fuente%20Mu%C3%B1iz!5e0!3m2!1ses!2smx!4v1722622707541!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (8) {
-      <iframe
-        title="ISSSTE Clínica de Especialidades Neuropsiquiatría"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.0299361267257!2d-99.1490847240182!3d19.45427608182974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f8df902b8715%3A0xece5e596613038d1!2sISSSTE%20Cl%C3%ADnica%20de%20Especialidades%20Neuropsiquiatr%C3%ADa!5e0!3m2!1ses!2smx!4v1722622789740!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (9) {
-      <iframe
-        title="Clínica de la ansiedad y salud mental"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1880.5650350470385!2d-99.1368929289283!3d19.493038993583006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f9afeae15773%3A0xb7e30ea957dcfa90!2sCl%C3%ADnica%20de%20la%20ansiedad%20y%20salud%20mental!5e0!3m2!1ses!2smx!4v1722623099308!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (10) {
-      <iframe
-        title="CEMEPI Terapias Psicológicas Sede Lindavista"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1880.5840454636968!2d-99.13378046120566!3d19.491402695450155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f992a0e3388f%3A0xfe256134bcf58288!2sCEMEPI%20Terapias%20Psicol%C3%B3gicas%20Sede%20Lindavista!5e0!3m2!1ses!2smx!4v1722623156015!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (11) {
-      <iframe
-        title="Centro De Tanatologia Y Terapia De Duelo S.C."
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3761.1218212241893!2d-99.14778262401738!3d19.49339398179903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f9b060cd198d%3A0xd45a401b9fcb2e2d!2sCentro%20De%20Tanatologia%20Y%20Terapia%20De%20Duelo%20S.C.!5e0!3m2!1ses!2smx!4v1722623214169!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (12) {
-      <iframe
-        title="Clínica Broa- Especialistas en ansiedad y depresión"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.540086348416!2d-99.17833412401956!3d19.389056981881144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff76d9700001%3A0x98e2d3ac28c404cc!2sCl%C3%ADnica%20Broa-%20Especialistas%20en%20ansiedad%20y%20depresi%C3%B3n!5e0!3m2!1ses!2smx!4v1722623342286!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (13) {
-      <iframe
-        title="ADIVAC"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.1518149406065!2d-99.16177602401831!3d19.449020281833892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f8c4861fd7c7%3A0xcdec83262a1387ef!2sADIVAC!5e0!3m2!1ses!2smx!4v1722623388548!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (14) {
-      <iframe
-        title="Asociación Mexicana de Suicidología"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.070412849594!2d-101.66658792398239!3d21.109758780559986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842bbfacf9d1a937%3A0x7b1c72d5800ad6a3!2sAsociaci%C3%B3n%20Mexicana%20de%20Suicidolog%C3%ADa%2C%20A.C!5e0!3m2!1ses!2smx!4v1722623462737!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (15) {
-      <iframe
-        title="Línea Nacional Diversidad Segura"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.70136928879!2d-99.16754937401878!3d19.42530478185262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff3687efa227%3A0x6ba104f94aafec87!2sConsejo%20Ciudadano%20para%20la%20Seguridad%20y%20Justicia%20de%20la%20CDMX!5e0!3m2!1ses!2smx!4v1722624551432!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (16) {
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d469.99501535599165!2d-99.14846192687543!3d19.54332551059477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f79dccbd20b1%3A0x9a11e90bf0460e85!2sJaime%20Nuno%20155%2C%20Mat%C3%ADas%20Romero%2C%20Gustavo%20A.%20Madero%2C%2007210%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1759865713197!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } @case (17) {
-      <img
-        src="assets/img/lineaVida.jpg"
-        alt=""
-        srcset=""
-        class="img-details"
-      />
-      } @case (18) {
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60213.61012769454!2d-99.24099855136718!3d19.397250499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff1262e6efaf%3A0x69c6187ee1923709!2sCIJ%20Benito%20Ju%C3%A1rez!5e0!3m2!1ses!2smx!4v1760657276505!5m2!1ses!2smx"
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-      } }
+<!-- detalles.component.html -->
+@if (loading) {
+  <div class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
     </div>
-    <div class="col-6 datos animate__animated animate__bounceIn">
-      <div class="row">
-        <div class="col-12 renglon">
-          <span class="text-bold">Nombre: </span>{{ data.nombre }}
-        </div>
-        <div class="col-12 renglon">
-          <span class="text-bold"> Domicilio: </span>
-          <ul>
-            @for (item of data.direccion; track $index) {
-            <li>{{ item }}</li>
+  </div>
+} @else if (error) {
+  <div class="text-center py-5">
+    <p class="text-danger">{{ error }}</p>
+    <button class="btn btn-primary" [routerLink]="['/home']">Regresar</button>
+  </div>
+} @else if (data) {
+  <section>
+    <div class="nombreClinica animate__animated animate__bounceIn">
+      <h2 id="{{ data.id }}">{{ data.nombre }}</h2>
+    </div>
+
+    <div class="row contenedorPrincipal">
+      <!-- Multimedia (Mapa o Imagen) -->
+      <div class="col-12 col-lg-6 mapa animate__animated animate__bounceIn">
+        @if (hasIframe()) {
+          <iframe
+            [src]="iframeUrl"
+            width="100%"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        } @else if (hasImage()) {
+          <img [src]="imageUrl" alt="{{ data.nombre }}" class="img-details" />
+        } @else {
+          <div class="text-center text-muted p-5">
+            <p>No hay mapa disponible</p>
+          </div>
+        }
+      </div>
+
+      <!-- Datos -->
+      <div class="col-12 col-lg-6 datos animate__animated animate__bounceIn">
+        <div class="row">
+          <div class="col-12 renglon">
+            <span class="text-bold">Nombre: </span>{{ data.nombre }}
+          </div>
+
+          <div class="col-12 renglon">
+            <span class="text-bold">Domicilio: </span>
+            @if (hasDirecciones()) {
+              <ul>
+                @for (direccion of direccionesList; track $index) {
+                  <li>{{ direccion }}</li>
+                }
+              </ul>
+            } @else {
+              <span class="text-muted">Sin dirección</span>
             }
-          </ul>
-        </div>
-        <div class="col-12 renglon">
-          <span class="text-bold"> Descripción: </span>{{ data.descipcion }}
-        </div>
-        <div class="col-12 renglon">
-          <span class="text-bold"> Contacto: </span>{{ data.contacto }}
-          @if (data.contactos) {
-          <span class="text-bold"> Contacto: </span>
-          <ul>
-            @for (item of data.contactos; track $index) {
-            <li>
-              {{ item }}
-            </li>
+          </div>
+
+          <div class="col-12 renglon">
+            <span class="text-bold">Descripción: </span>{{ data.descripcion }}
+          </div>
+
+          <div class="col-12 renglon">
+            <span class="text-bold">Contacto: </span>
+            @if (hasMultipleContactos()) {
+              <ul>
+                @for (contacto of contactosList; track $index) {
+                  <li>{{ contacto }}</li>
+                }
+              </ul>
+            } @else {
+              {{ data.contacto }}
             }
-          </ul>
-          } @if (data.correo) {
-          <div><span class="text-bold"> Correo: </span>{{ data.correo }}</div>
+          </div>
+
+          @if (data.correo) {
+            <div class="col-12 renglon">
+              <span class="text-bold">Correo: </span>
+              <a href="mailto:{{ data.correo }}">{{ data.correo }}</a>
+            </div>
           }
-        </div>
-        <div class="col-12 renglon">
-          <span class="text-bold"> Proceso: </span>{{ data.proceso }}
+
+          @if (hasProceso()) {
+            <div class="col-12 renglon">
+              <span class="text-bold">Proceso: </span>
+              @if (hasMultipleProcesos()) {
+                <ul>
+                  @for (paso of procesoList; track $index) {
+                    <li>{{ paso }}</li>
+                  }
+                </ul>
+              } @else {
+                {{ procesoList[0] }}
+              }
+            </div>
+          }
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <button
-      [routerLink]="['/home']"
-      class="btnfos btnfos-1 text-decoration-none"
-    >
-      <svg>
-        <rect x="0" y="0" fill="none" width="100%" height="100%" />
-      </svg>
-      Regresar
-    </button>
-  </div>
-</section>
+
+    <div class="container">
+      <button
+        [routerLink]="['/home']"
+        class="btnfos btnfos-1 text-decoration-none"
+      >
+        <svg>
+          <rect x="0" y="0" fill="none" width="100%" height="100%" />
+        </svg>
+        Regresar
+      </button>
+    </div>
+  </section>
+}

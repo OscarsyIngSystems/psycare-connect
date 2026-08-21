@@ -1,50 +1,62 @@
+<!-- directorio.component.html -->
 <section class="px-2 py-2 d-flex justify-content-center">
   <div class="wrapper w-100">
-    @for (instituto of institutos; track $index) {
-
-    <div
-      id="{{ instituto.id }}"
-      class="contener card animate__animated animate__pulse"
-    >
-      <div
-        class="row d-flex justify-content-center w-100 h-100 align-items-center"
-      >
-        <div class="card">
-          <div class="card__side card__side--front">
-            <div
-              [attr.im]="instituto.imagen"
-              class="card__picture card__picture--3"
-            >
-              &nbsp;
-            </div>
-            <div [attr.colorBack]="1" class="card__heading text-center">
-              <span class="heading-tertiary"> {{ instituto.nombre }}</span>
-            </div>
-            <div class="card__side--body">
-              <div class="card__details">
-                {{ instituto.descipcion }}
-              </div>
-              <!-- <i class="card__side--body-icon icon-basic-geolocalize-05"></i> -->
-              <i class="bi bi-geo-alt-fill card__side--body-icon"></i>
-            </div>
-          </div>
-          <div
-            [attr.colorBack]="1"
-            class="card__side card__side--back card__side--back-3"
-          >
-            <a
-              href="#"
-              (click)="verDetalle(instituto); $event.preventDefault()"
-              class="card__side--btn-text"
-              >Ver Detalles &zigrarr;</a
-            >
-          </div>
+    @if (loading) {
+      <div class="text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
         </div>
       </div>
-    </div>
-
+    } @else {
+      @for (instituto of institutosFiltrados; track instituto.id) {
+        <div
+          id="{{ instituto.id }}"
+          class="contener card animate__animated animate__pulse"
+        >
+          <div
+            class="row d-flex justify-content-center w-100 h-100 align-items-center"
+          >
+            <div class="card">
+              <div class="card__side card__side--front">
+                <div
+                  [attr.im]="instituto.imagen"
+                  class="card__picture card__picture--3"
+                >
+                  &nbsp;
+                </div>
+                <div [attr.colorBack]="1" class="card__heading text-center">
+                  <span class="heading-tertiary">{{ instituto.nombre }}</span>
+                </div>
+                <div class="card__side--body">
+                  <div class="card__details">
+                    {{ instituto.descripcion }}
+                  </div>
+                  <i class="bi bi-geo-alt-fill card__side--body-icon"></i>
+                </div>
+              </div>
+              <div
+                [attr.colorBack]="1"
+                class="card__side card__side--back card__side--back-3"
+              >
+                <a
+                  href="#"
+                  (click)="verDetalle(instituto); $event.preventDefault()"
+                  class="card__side--btn-text"
+                  >Ver Detalles &zigrarr;</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <app-empty-state
+          title="¡Ups! No hay institutos"
+          message="Parece que no hay institutos disponibles en este momento."
+          emoji="🔍"
+          buttonText="Reintentar"
+          (retry)="handleRetry()"
+        />
+      }
     }
   </div>
 </section>
-
-<section class="buttons"></section>
