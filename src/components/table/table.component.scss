@@ -1,6 +1,6 @@
 // table.component.scss
 
-// // Definir variables locales (por si no existen en el archivo de variables)
+// Definir variables locales (por si no existen en el archivo de variables)
 $color-pink: #d5538c !default;
 
 // Importar variables globales
@@ -18,6 +18,7 @@ $color-pink: #d5538c !default;
 .table_name {
   color: $color-green-table;
   font-weight: 600;
+  font-size: 1.5rem; // AUMENTADO (era 0.95rem)
 }
 
 .table-card {
@@ -46,7 +47,7 @@ $color-pink: #d5538c !default;
     text-align: left;
     font-weight: 600;
     color: $color-blue-dark;
-    font-size: 14px;
+    font-size: 15px; // AUMENTADO (era 14px)
     text-transform: uppercase;
     letter-spacing: 0.5px;
     border-bottom: 2px solid #e9ecef;
@@ -72,7 +73,7 @@ $color-pink: #d5538c !default;
   td {
     padding: 18px 20px;
     color: #212529;
-    font-size: 14px;
+    font-size: 15px; // AUMENTADO (era 14px)
     vertical-align: middle;
   }
 }
@@ -90,7 +91,7 @@ $color-pink: #d5538c !default;
   gap: 12px;
 
   .table_name {
-    font-size: 0.95rem;
+    font-size: 1rem; // AUMENTADO (era 0.95rem)
     line-height: 1.4;
     word-break: break-word;
   }
@@ -117,7 +118,7 @@ $color-pink: #d5538c !default;
 .descripcion-text {
   line-height: 1.5;
   color: #495057;
-  font-size: 0.9rem;
+  font-size: 0.95rem; // AUMENTADO (era 0.9rem)
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -134,12 +135,12 @@ $color-pink: #d5538c !default;
   max-width: 250px;
 
   .direccion-icon {
-    font-size: 14px;
+    font-size: 15px; // AUMENTADO (era 14px)
     flex-shrink: 0;
   }
 
   .direccion-text {
-    font-size: 0.85rem;
+    font-size: 0.9rem; // AUMENTADO (era 0.85rem)
     color: #495057;
     line-height: 1.4;
     display: -webkit-box;
@@ -151,7 +152,7 @@ $color-pink: #d5538c !default;
   }
 
   .direccion-mas {
-    font-size: 0.7rem;
+    font-size: 0.75rem; // AUMENTADO (era 0.7rem)
     color: #6c757d;
     background: #f1f3f5;
     padding: 0.1rem 0.6rem;
@@ -169,7 +170,7 @@ $color-pink: #d5538c !default;
   gap: 6px;
   padding: 6px 14px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 13px; // AUMENTADO (era 12px)
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.3px;
@@ -264,11 +265,10 @@ $color-pink: #d5538c !default;
     bottom: calc(100% + 8px);
     left: 50%;
     transform: translateX(-50%) scale(0.8);
-    background: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 4px 10px;
     border-radius: 4px;
-    font-size: 11px;
+    font-size: 12px; // AUMENTADO (era 11px)
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
@@ -281,19 +281,17 @@ $color-pink: #d5538c !default;
   }
 }
 
-.edit-btn {
-  &:hover {
-    background: rgba(13, 110, 253, 0.1);
-    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.15);
-  }
-}
+// .edit-btn {
+//   &:hover {
+//     box-shadow: 0 4px 12px rgba(13, 110, 253, 0.15);
+//   }
+// }
 
-.delete-btn {
-  &:hover {
-    background: rgba(220, 53, 69, 0.1);
-    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.15);
-  }
-}
+// .delete-btn {
+//   &:hover {
+//     box-shadow: 0 4px 12px rgba(220, 53, 69, 0.15);
+//   }
+// }
 
 .delete-icon,
 .edit-icon {
@@ -338,7 +336,7 @@ $color-pink: #d5538c !default;
     .modal-title {
       font-weight: 600;
       color: #212529;
-      font-size: 1.1rem;
+      font-size: 2.15rem; // AUMENTADO (era 1.1rem)
     }
 
     .btn-close {
@@ -358,7 +356,6 @@ $color-pink: #d5538c !default;
     max-height: 75vh;
     overflow-y: auto;
 
-    // Scroll personalizado
     &::-webkit-scrollbar {
       width: 6px;
     }
@@ -424,7 +421,7 @@ $color-pink: #d5538c !default;
   }
 
   .empty-title {
-    font-size: 1.2rem;
+    font-size: 1.25rem; // AUMENTADO (era 1.2rem)
     font-weight: 600;
     color: #495057;
     margin-bottom: 0.5rem;
@@ -432,7 +429,7 @@ $color-pink: #d5538c !default;
 
   .empty-text {
     color: #6c757d;
-    font-size: 0.95rem;
+    font-size: 1rem; // AUMENTADO (era 0.95rem)
   }
 }
 
@@ -448,8 +445,12 @@ $color-pink: #d5538c !default;
     th,
     td {
       padding: 14px 16px;
-      font-size: 13px;
+      font-size: 14px; // AUMENTADO (era 13px)
     }
+  }
+
+  th {
+    font-size: 13px !important; // AUMENTADO
   }
 
   .nombre-cell {
@@ -457,12 +458,28 @@ $color-pink: #d5538c !default;
     max-width: 200px;
   }
 
+  .nombre-content .table_name {
+    font-size: 0.9rem;
+  }
+
   .descripcion-content {
     max-width: 200px;
   }
 
+  .descripcion-text {
+    font-size: 0.85rem;
+  }
+
   .direccion-content {
     max-width: 180px;
+  }
+
+  .direccion-text {
+    font-size: 0.8rem;
+  }
+
+  .status-badge {
+    font-size: 12px;
   }
 
   .img-delete,
@@ -489,15 +506,16 @@ $color-pink: #d5538c !default;
 
   .styled-table {
     min-width: 700px;
-    font-size: 12px;
+    font-size: 13px; // AUMENTADO (era 12px)
 
     thead th {
       padding: 12px 14px;
-      font-size: 11px;
+      font-size: 12px; // AUMENTADO (era 11px)
     }
 
     tbody td {
       padding: 12px 14px;
+      font-size: 13px;
     }
   }
 
@@ -541,7 +559,7 @@ $color-pink: #d5538c !default;
   }
 
   .status-badge {
-    font-size: 10px;
+    font-size: 11px; // AUMENTADO (era 10px)
     padding: 4px 10px;
     letter-spacing: 0;
   }
@@ -589,11 +607,12 @@ $color-pink: #d5538c !default;
 
   .styled-table {
     min-width: 600px;
-    font-size: 11px;
+    font-size: 12px; // AUMENTADO (era 11px)
 
     thead th,
     tbody td {
       padding: 10px 10px;
+      font-size: 12px;
     }
   }
 
@@ -602,12 +621,24 @@ $color-pink: #d5538c !default;
     max-width: 120px;
   }
 
+  .nombre-content .table_name {
+    font-size: 0.8rem;
+  }
+
   .descripcion-content {
     max-width: 120px;
   }
 
+  .descripcion-text {
+    font-size: 0.75rem;
+  }
+
   .direccion-content {
     max-width: 100px;
+  }
+
+  .direccion-text {
+    font-size: 0.7rem;
   }
 
   .action-btn {
@@ -622,7 +653,7 @@ $color-pink: #d5538c !default;
   }
 
   .status-badge {
-    font-size: 9px;
+    font-size: 10px; // AUMENTADO (era 9px)
     padding: 2px 8px;
   }
 }
@@ -639,7 +670,7 @@ $color-pink: #d5538c !default;
   }
 
   .empty-title {
-    font-size: 1.2rem;
+    font-size: 1.25rem; // AUMENTADO
     font-weight: 600;
     color: #495057;
     margin-bottom: 0.5rem;
@@ -647,28 +678,9 @@ $color-pink: #d5538c !default;
 
   .empty-text {
     color: #6c757d;
-    font-size: 0.95rem;
+    font-size: 1rem; // AUMENTADO
   }
 }
-
-// Dark mode para empty state
-@media (prefers-color-scheme: dark) {
-  .empty-state {
-    .empty-icon {
-      color: #3a3a5a;
-    }
-
-    .empty-title {
-      color: #b0b0b0;
-    }
-
-    .empty-text {
-      color: #808080;
-    }
-  }
-}
-
-// table.component.scss - Agregar al final
 
 .error-state {
   .empty-icon {
@@ -679,7 +691,7 @@ $color-pink: #d5538c !default;
   }
 
   .empty-title {
-    font-size: 1.2rem;
+    font-size: 1.25rem; // AUMENTADO
     font-weight: 600;
     color: #dc3545;
     margin-bottom: 0.5rem;
@@ -687,7 +699,7 @@ $color-pink: #d5538c !default;
 
   .empty-text {
     color: #6c757d;
-    font-size: 0.95rem;
+    font-size: 1rem; // AUMENTADO
     margin-bottom: 1.5rem;
     max-width: 400px;
     margin-left: auto;
@@ -750,18 +762,5 @@ $color-pink: #d5538c !default;
   }
   to {
     transform: rotate(360deg);
-  }
-}
-
-// Dark mode para error state
-@media (prefers-color-scheme: dark) {
-  .error-state {
-    .empty-title {
-      color: #ef5350;
-    }
-
-    .empty-text {
-      color: #b0b0b0;
-    }
   }
 }

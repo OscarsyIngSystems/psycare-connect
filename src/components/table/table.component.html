@@ -135,6 +135,7 @@
 >
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
+      <!-- HEADER DEL MODAL - Solo el título y el botón de cierre -->
       <div class="modal-header">
         <h5 class="modal-title" id="editCreateModalLabel">
           {{ institutoSelectado() ? "Editar Instituto" : "Nuevo Instituto" }}
@@ -147,6 +148,8 @@
           (click)="closeModal()"
         ></button>
       </div>
+
+      <!-- BODY DEL MODAL - Solo el formulario sin su propio header -->
       <div class="modal-body">
         <app-form
           [institutoSeleccionado]="institutoSelectado()"

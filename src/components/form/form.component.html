@@ -1,11 +1,5 @@
+<!-- form.component.html -->
 <div class="container__form">
-  <div class="modal-header">
-    <h1 class="container__form--title">
-      {{ institutoSeleccionado ? "Editar Instituto" : "Nuevo Instituto" }}
-    </h1>
-    <button type="button" class="btn-close" (click)="onCloseModal()"></button>
-  </div>
-
   <div class="modal-body">
     <form [formGroup]="form" (ngSubmit)="submit()">
       <!-- Información Básica -->
@@ -79,42 +73,74 @@
         </label>
       </div>
 
-      <!-- Dirección -->
+      <!-- Direcciones Múltiples -->
       <div class="container__form--module">
-        <h2 class="container__form--subtitle">Dirección</h2>
-        <label class="container__form--label">
-          <div>
-            <span>
-              Dirección
-              <span class="container__form--required">*</span>
-            </span>
-          </div>
-          <textarea
-            formControlName="direccion"
-            [class.is-invalid]="direccion?.invalid && direccion?.touched"
-            placeholder="Ingrese la dirección completa"
-          ></textarea>
-          <small
-            class="container__form--hint"
-            *ngIf="direccion?.valid || !direccion?.touched"
-          >
-            Ej. Benito Juárez: Tintoreto 39, Santa María Nonoalco, Benito Juárez
-            Alcaldía
-          </small>
-          <small
-            class="container__form--error"
-            *ngIf="direccion?.invalid && direccion?.touched"
-          >
-            La dirección es requerida
-          </small>
-        </label>
+        <h2 class="container__form--subtitle">
+          Direcciones
+          <span class="container__form--required">*</span>
+        </h2>
+
+        <div formArrayName="direcciones">
+          @for (dirControl of direccionesControls; track $index) {
+            <div class="direccion-item" [formGroupName]="$index">
+              <label class="container__form--label">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="direccion-label"
+                    >Dirección {{ $index + 1 }}</span
+                  >
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-danger"
+                    (click)="eliminarDireccion($index)"
+                    *ngIf="direccionesControls.length > 1"
+                  >
+                    ✕ Eliminar
+                  </button>
+                </div>
+                <textarea
+                  [value]="dirControl.get('direccion')?.value || ''"
+                  (input)="
+                    dirControl
+                      .get('direccion')
+                      ?.setValue($any($event.target).value)
+                  "
+                  (blur)="dirControl.get('direccion')?.markAsTouched()"
+                  [class.is-invalid]="
+                    dirControl.get('direccion')?.invalid &&
+                    dirControl.get('direccion')?.touched
+                  "
+                  placeholder="Ingrese la dirección completa"
+                  rows="2"
+                ></textarea>
+                <small
+                  class="container__form--error"
+                  *ngIf="
+                    dirControl.get('direccion')?.invalid &&
+                    dirControl.get('direccion')?.touched
+                  "
+                >
+                  La dirección es requerida
+                </small>
+                <!-- ✅ DEBUG ELIMINADO -->
+              </label>
+            </div>
+          }
+        </div>
+
+        <button
+          type="button"
+          class="btn container__form--btn-agregar"
+          (click)="agregarDireccion()"
+        >
+          + Agregar otra dirección
+        </button>
       </div>
 
       <hr />
 
-      <!-- Contactos -->
+      <!-- Contacto -->
       <div class="container__form--module">
-        <h2 class="container__form--subtitle">Contactos</h2>
+        <h2 class="container__form--subtitle">Contacto</h2>
         <label class="container__form--label">
           <div>
             <span>
@@ -122,11 +148,11 @@
               <span class="container__form--required">*</span>
             </span>
           </div>
-          <textarea
+          <input
             formControlName="contacto"
             [class.is-invalid]="contacto?.invalid && contacto?.touched"
             placeholder="Teléfonos, WhatsApp u otros medios de contacto"
-          ></textarea>
+          />
           <small
             class="container__form--hint"
             *ngIf="contacto?.valid || !contacto?.touched"
@@ -188,7 +214,7 @@
                   rows="3"
                 ></textarea>
                 <small class="container__form--hint">
-                  Ej. Código iframe de Google Maps
+                  Ej. Código iframe de Google Maps (opcional)
                 </small>
               </label>
             </div>
@@ -232,7 +258,7 @@
             placeholder="Ej. 1, 2, 3, 4, 5, 6, 7, 8, 9"
           />
           <small class="container__form--hint">
-            Número de imagen a mostrar (opcional)
+            Número de imagen a mostrar (opcional, por defecto 1)
           </small>
         </label>
       </div>
@@ -257,7 +283,7 @@
             class="container__form--hint"
             *ngIf="proceso?.valid || !proceso?.touched"
           >
-            Ej. Llamar para solicitar cita.
+            Ej. Llamar para solicitar cita. (Usa * para separar pasos)
           </small>
           <small
             class="container__form--error"

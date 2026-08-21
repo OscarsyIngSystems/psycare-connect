@@ -102,3 +102,231 @@
     margin: 2rem;
   }
 }
+
+// form.component.scss - Agregar al final
+
+.direccion-item {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  position: relative;
+
+  &:hover {
+    border-color: #d5538c;
+  }
+
+  .d-flex {
+    gap: 0.5rem;
+  }
+
+  .btn-outline-danger {
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    background: transparent;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #dc3545;
+      color: white;
+    }
+  }
+}
+
+.container__form--btn-agregar {
+  background: transparent;
+  color: #d5538c;
+  border: 2px dashed #d5538c;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #d5538c;
+    color: white;
+    transform: scale(1.02);
+  }
+}
+
+// Responsive para el formulario
+@media (max-width: 768px) {
+  .direccion-item {
+    padding: 0.75rem;
+  }
+
+  .container__form--btn-agregar {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+// form.component.scss - Agregar
+
+.direccion-item {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  position: relative;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #d5538c;
+    box-shadow: 0 2px 8px rgba(213, 83, 140, 0.1);
+  }
+
+  .direccion-label {
+    font-weight: 500;
+    color: #495057;
+  }
+
+  .btn-outline-danger {
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    background: transparent;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #dc3545;
+      color: white;
+    }
+  }
+}
+
+.container__form--btn-agregar {
+  background: transparent;
+  color: #d5538c;
+  border: 2px dashed #d5538c;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #d5538c;
+    color: white;
+    transform: scale(1.02);
+    border-style: solid;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// Para el estado inválido de las direcciones
+textarea.is-invalid {
+  border-color: #dc3545;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .direccion-item {
+    padding: 0.75rem;
+  }
+
+  .direccion-item .d-flex {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .container__form--btn-agregar {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}
+
+// form.component.scss - Agregar
+
+.container__form--debug {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.7rem;
+  color: #6c757d;
+  font-family: monospace;
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+}
+
+.direccion-item {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #d5538c;
+    box-shadow: 0 2px 8px rgba(213, 83, 140, 0.1);
+  }
+
+  .direccion-label {
+    font-weight: 500;
+    color: #495057;
+  }
+
+  .btn-outline-danger {
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    background: transparent;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #dc3545;
+      color: white;
+    }
+  }
+}
+
+.container__form--btn-agregar {
+  background: transparent;
+  color: #d5538c;
+  border: 2px dashed #d5538c;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #d5538c;
+    color: white;
+    transform: scale(1.02);
+    border-style: solid;
+  }
+}
+
+textarea.is-invalid {
+  border-color: #dc3545;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+  }
+}

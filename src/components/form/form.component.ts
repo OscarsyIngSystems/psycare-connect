@@ -1,5 +1,6 @@
+// form.component.ts
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, FormArray } from "@angular/forms";
 import { Institucion } from '../../interfaces/institucion';
 import { LordAlertService } from '../lord-alert/service/lord-alert.service';
 import { CommonModule } from '@angular/common';
@@ -29,19 +30,17 @@ export class FormComponent implements OnInit {
     this.crearFormulario();
   }
 
-  ngOnInit(): void {
-    // No es necesario, ngOnChanges maneja las actualizaciones
-  }
+  ngOnInit(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['institutoSeleccionado']) {
       console.log('Cambio detectado:', this.institutoSeleccionado);
 
       if (this.institutoSeleccionado !== null && this.institutoSeleccionado !== undefined) {
-        console.log(this.institutoSeleccionado, '🥳 Editando instituto');
+        console.log('Editando instituto:', this.institutoSeleccionado);
         this.actualizarFormulario(this.institutoSeleccionado);
       } else {
-        console.log(this.institutoSeleccionado, '❌ Creando nuevo instituto');
+        console.log('Creando nuevo instituto');
         this.resetearFormulario();
       }
     }
@@ -53,40 +52,95 @@ export class FormComponent implements OnInit {
       descripcion: ['', [Validators.required, Validators.minLength(10)]],
       contacto: ['', Validators.required],
       correo: ['', [Validators.email]],
-      direccion: ['', Validators.required],
+      direcciones: this.formBuilder.array([]),
       iframe: [''],
       imagen: [''],
       proceso: ['', Validators.required],
-      activo: [true] // Control local en el frontend
+      activo: [true]
     });
   }
 
-  private actualizarFormulario(instituto: Institucion): void {
-    // Obtener la primera dirección si existe
-    const direccion = instituto.direcciones && instituto.direcciones.length > 0
-      ? instituto.direcciones[0].direccion
-      : '';
+  private crearDireccionGroup(direccion: string = ''): FormGroup {
+    return this.formBuilder.group({
+      direccion: [direccion, Validators.required]
+    });
+  }
 
+  // Getters para FormArray
+  get direccionesArray(): FormArray {
+    return this.form.get('direcciones') as FormArray;
+  }
+
+  get direccionesControls(): FormGroup[] {
+    return this.direccionesArray.controls as FormGroup[];
+  }
+
+  // Agregar dirección
+  agregarDireccion(): void {
+    this.direccionesArray.push(this.crearDireccionGroup(''));
+  }
+
+  // Eliminar dirección
+  eliminarDireccion(index: number): void {
+    if (this.direccionesArray.length > 1) {
+      this.direccionesArray.removeAt(index);
+    } else {
+      this.lordAlert.showToast('Debe haber al menos una dirección', 'warning');
+    }
+  }
+
+  private actualizarFormulario(instituto: Institucion): void {
+    // Limpiar el FormArray de direcciones COMPLETAMENTE
+    while (this.direccionesArray.length > 0) {
+      this.direccionesArray.removeAt(0);
+    }
+
+    // Si el instituto tiene direcciones, agregarlas todas
+    if (instituto.direcciones && instituto.direcciones.length > 0) {
+      instituto.direcciones.forEach((dir) => {
+        const direccionText = dir.direccion || '';
+        this.direccionesArray.push(
+          this.formBuilder.group({
+            direccion: [direccionText, Validators.required]
+          })
+        );
+      });
+    } else {
+      // Si no tiene direcciones, agregar una vacía
+      this.direccionesArray.push(this.crearDireccionGroup(''));
+    }
+
+    // Actualizar el resto de los campos
     this.form.patchValue({
       nombre: instituto.nombre || '',
       descripcion: instituto.descripcion || '',
       contacto: instituto.contacto || '',
       correo: instituto.correo || '',
-      direccion: direccion,
       iframe: instituto.iframe || '',
       imagen: instituto.imagen || '',
       proceso: instituto.proceso || '',
       activo: instituto.activo !== undefined ? instituto.activo : true
     });
+
+    console.log('Total direcciones cargadas:', this.direccionesArray.length);
+    console.log('Direcciones:', this.direccionesArray.value);
   }
 
   private resetearFormulario(): void {
+    // Limpiar el FormArray de direcciones
+    while (this.direccionesArray.length > 0) {
+      this.direccionesArray.removeAt(0);
+    }
+
+    // Agregar una dirección vacía
+    this.direccionesArray.push(this.crearDireccionGroup(''));
+
+    // Resetear el resto del formulario
     this.form.reset({
       nombre: '',
       descripcion: '',
       contacto: '',
       correo: '',
-      direccion: '',
       iframe: '',
       imagen: '',
       proceso: '',
@@ -103,26 +157,31 @@ export class FormComponent implements OnInit {
       Object.keys(this.form.controls).forEach(key => {
         this.form.get(key)?.markAsTouched();
       });
+      // Marcar direcciones como tocadas
+      this.direccionesArray.controls.forEach(control => {
+        control.get('direccion')?.markAsTouched();
+      });
       this.lordAlert.showToast('Por favor, completa todos los campos requeridos', 'warning');
       return;
     }
 
     const formValue = this.form.value;
 
-    // Construir el objeto base para enviar a la API (sin el campo activo)
+    // Extraer solo las direcciones en formato string[]
+    const direccionesStrings = formValue.direcciones
+      .map((d: any) => d.direccion)
+      .filter((d: string) => d && d.trim());
+
+    // Construir el objeto para la API
     const institutoData: any = {
       nombre: formValue.nombre,
       descripcion: formValue.descripcion,
       contacto: formValue.contacto,
+      direcciones: direccionesStrings,
       correo: formValue.correo || null,
-      direcciones: [
-        {
-          direccion: formValue.direccion
-        }
-      ],
-      iframe: formValue.iframe || '',
-      imagen: formValue.imagen || '',
-      proceso: formValue.proceso
+      imagen: formValue.imagen || '1',
+      proceso: formValue.proceso,
+      iframe: formValue.iframe || ''
     };
 
     // Si estamos editando, agregar el ID
@@ -130,12 +189,11 @@ export class FormComponent implements OnInit {
       institutoData.id = this.institutoSeleccionado.id;
     }
 
-    console.log('Datos a guardar (sin activo):', institutoData);
+    console.log('Datos a guardar:', institutoData);
 
-    // Emitir los datos junto con el estado activo para el frontend
     this.saveEvent.emit({
       data: institutoData,
-      activo: formValue.activo // Control local para el frontend
+      activo: formValue.activo
     });
 
     this.lordAlert.showToast(
@@ -151,7 +209,6 @@ export class FormComponent implements OnInit {
   get descripcion() { return this.form.get('descripcion'); }
   get contacto() { return this.form.get('contacto'); }
   get correo() { return this.form.get('correo'); }
-  get direccion() { return this.form.get('direccion'); }
   get proceso() { return this.form.get('proceso'); }
   get iframe() { return this.form.get('iframe'); }
   get imagen() { return this.form.get('imagen'); }
