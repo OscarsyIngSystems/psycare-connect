@@ -190,6 +190,15 @@ button {
   .nombreClinica {
     margin: 0 0.27rem;
   }
+
+  .mapa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    height: 45%;
+    margin: 1.5em;
+  }
 }
 
 @media only screen and (max-width: 344px) {
