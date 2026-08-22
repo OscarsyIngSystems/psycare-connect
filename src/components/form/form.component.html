@@ -121,7 +121,6 @@
                 >
                   La dirección es requerida
                 </small>
-                <!-- ✅ DEBUG ELIMINADO -->
               </label>
             </div>
           }
@@ -247,19 +246,52 @@
         </div>
       </div>
 
-      <!-- Imagen -->
+      <!-- Imagen con Tooltip -->
       <div class="container__form--module">
         <label class="container__form--label">
-          <div>
+          <div class="d-flex align-items-center gap-2">
             <span>Imagen (ID)</span>
+            <i
+              class="bi bi-info-circle text-primary"
+              style="cursor: pointer; font-size: 1.2rem"
+              (click)="toggleTooltipImagenes()"
+            ></i>
           </div>
           <input
             formControlName="imagen"
             placeholder="Ej. 1, 2, 3, 4, 5, 6, 7, 8, 9"
+            class="form-control"
           />
           <small class="container__form--hint">
             Número de imagen a mostrar (opcional, por defecto 1)
           </small>
+
+          <!-- Tooltip con miniaturas -->
+          <div class="image-tooltip" *ngIf="mostrarTooltipImagenes">
+            <div class="image-tooltip-header">
+              <strong>Imágenes disponibles</strong>
+              <span
+                class="image-tooltip-close"
+                (click)="toggleTooltipImagenes()"
+                >✕</span
+              >
+            </div>
+            <div class="image-tooltip-grid">
+              <div
+                class="image-tooltip-item"
+                *ngFor="let img of imagenesDisponibles"
+                (click)="seleccionarImagen(img)"
+              >
+                <img
+                  [src]="getImageUrl(img)"
+                  [alt]="'Imagen ' + img"
+                  (error)="onImageError($event)"
+                  class="image-thumbnail"
+                />
+                <span class="image-number">#{{ img }}</span>
+              </div>
+            </div>
+          </div>
         </label>
       </div>
 

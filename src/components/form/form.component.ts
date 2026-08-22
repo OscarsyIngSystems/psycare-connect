@@ -23,6 +23,23 @@ export class FormComponent implements OnInit {
 
   form!: FormGroup;
 
+  // Variables para el tooltip de imágenes
+  mostrarTooltipImagenes = false;
+  imagenesDisponibles = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  // ✅ Mapa de URLs en duro para las imágenes
+  imageUrls: { [key: number]: string } = {
+    1: '/assets/1.jpg',
+    2: '/assets/2.jpg',
+    3: '/assets/3.jpg',
+    4: '/assets/4.jpg',
+    5: '/assets/5.jpg',
+    6: '/assets/6.jpg',
+    7: '/assets/7.jpg',
+    8: '/assets/8.jpg',
+    9: '/assets/9.jpg'
+  };
+
   constructor(
     private formBuilder: FormBuilder,
     private lordAlert: LordAlertService
@@ -31,6 +48,29 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  // Método para toggle del tooltip
+  toggleTooltipImagenes(): void {
+    this.mostrarTooltipImagenes = !this.mostrarTooltipImagenes;
+  }
+
+  // ✅ Método para obtener la URL de la imagen usando el mapa
+  getImageUrl(numero: number): string {
+    return this.imageUrls[numero] || '/assets/1.jpg';
+  }
+
+  // ✅ Método para manejar errores de carga de imágenes
+  onImageError(event: any): void {
+    // Si la imagen no carga, usa la imagen 1 como fallback
+    event.target.src = '/assets/1.jpg';
+  }
+
+  // Método para seleccionar una imagen al hacer clic
+  seleccionarImagen(numero: number): void {
+    this.form.get('imagen')?.setValue(numero.toString());
+    this.mostrarTooltipImagenes = false;
+    this.lordAlert.showToast(`Imagen ${numero} seleccionada`, 'info');
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['institutoSeleccionado']) {
@@ -41,7 +81,7 @@ export class FormComponent implements OnInit {
         this.actualizarFormulario(this.institutoSeleccionado);
       } else {
         console.log('Creando nuevo instituto');
-        this.resetearFormulario(); // ✅ Se limpia cuando el valor es null
+        this.resetearFormulario();
       }
     }
   }
@@ -150,6 +190,7 @@ export class FormComponent implements OnInit {
 
   onCloseModal(): void {
     this.resetearFormulario();
+    this.mostrarTooltipImagenes = false;
     this.closeModalEvent.emit();
   }
 

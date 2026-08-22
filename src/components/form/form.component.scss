@@ -1,3 +1,4 @@
+// form.component.scss
 @use "../../sass/variables" as *;
 
 %btn-base {
@@ -17,54 +18,104 @@
   &--title {
     color: $color-green-table;
   }
+
   &--subtitle {
     color: $color-blue-dark;
   }
+
   &--label {
     display: flex;
     flex-direction: column;
     padding: 2rem;
+    position: relative;
+
     &:has(span) {
       font-weight: bold;
     }
+
+    // ============================================
+    // ESTILOS PARA TODOS LOS INPUTS Y TEXTAREAS
+    // ============================================
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      transition:
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+
+      &:focus {
+        border-color: $color-pink-dark;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(213, 83, 140, 0.25);
+      }
+
+      &::placeholder {
+        color: #6c757d;
+        opacity: 1;
+        font-size: 1rem;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
   }
+
   &--required {
     color: $color-red;
   }
+
   &--hint {
     color: $color-dark-grey;
     font-style: italic;
   }
+
   &--module {
     padding-top: 0.5rem;
   }
+
   &--col {
     display: flex;
     flex-direction: column;
   }
+
   &--btn-group {
     display: flex;
     flex-direction: column;
     padding: 2rem 3rem;
+
     &:has(span) {
       font-weight: bold;
     }
   }
+
   &--radio-option {
     padding: 0 1rem;
   }
+
   &--radio-option input[type="radio"] {
     accent-color: $color-pink-dark;
   }
+
   &--btn {
     @extend %btn-base;
     width: 20rem;
     margin: 1rem 3rem;
   }
+
   &--btn-large {
     @extend %btn-base;
     width: 30rem;
   }
+
   &--btn,
   &--btn-large,
   &--btn-cancelar,
@@ -73,6 +124,7 @@
       transform: scale(1.1);
     }
   }
+
   &--btn,
   &--btn-large {
     &:active {
@@ -80,6 +132,7 @@
       color: white;
     }
   }
+
   &--btn-cancelar {
     background-color: white;
     color: $color-darker-grey;
@@ -91,6 +144,7 @@
     transition: transform 0.2s ease;
     border: 2px solid $color-darker-grey;
   }
+
   &--btn-eliminar {
     background-color: $color-red;
     color: white;
@@ -103,72 +157,9 @@
   }
 }
 
-// form.component.scss - Agregar al final
-
-.direccion-item {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
-  position: relative;
-
-  &:hover {
-    border-color: #d5538c;
-  }
-
-  .d-flex {
-    gap: 0.5rem;
-  }
-
-  .btn-outline-danger {
-    color: #dc3545;
-    border: 1px solid #dc3545;
-    background: transparent;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: #dc3545;
-      color: white;
-    }
-  }
-}
-
-.container__form--btn-agregar {
-  background: transparent;
-  color: #d5538c;
-  border: 2px dashed #d5538c;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  width: 100%;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: #d5538c;
-    color: white;
-    transform: scale(1.02);
-  }
-}
-
-// Responsive para el formulario
-@media (max-width: 768px) {
-  .direccion-item {
-    padding: 0.75rem;
-  }
-
-  .container__form--btn-agregar {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
-  }
-}
-
-// form.component.scss - Agregar
+// ============================================
+// ESTILOS PARA DIRECCIONES MÚLTIPLES
+// ============================================
 
 .direccion-item {
   margin-bottom: 1rem;
@@ -180,13 +171,17 @@
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: #d5538c;
+    border-color: $color-pink-dark;
     box-shadow: 0 2px 8px rgba(213, 83, 140, 0.1);
   }
 
   .direccion-label {
     font-weight: 500;
     color: #495057;
+  }
+
+  .d-flex {
+    gap: 0.5rem;
   }
 
   .btn-outline-danger {
@@ -208,8 +203,8 @@
 
 .container__form--btn-agregar {
   background: transparent;
-  color: #d5538c;
-  border: 2px dashed #d5538c;
+  color: $color-pink-dark;
+  border: 2px dashed $color-pink-dark;
   padding: 0.75rem 1rem;
   border-radius: 8px;
   width: 100%;
@@ -218,7 +213,7 @@
   transition: all 0.3s ease;
 
   &:hover {
-    background: #d5538c;
+    background: $color-pink-dark;
     color: white;
     transform: scale(1.02);
     border-style: solid;
@@ -229,34 +224,316 @@
   }
 }
 
-// Para el estado inválido de las direcciones
-textarea.is-invalid {
+// ============================================
+// ESTILOS PARA TOOLTIP DE IMÁGENES
+// ============================================
+
+.image-tooltip {
+  position: absolute;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 12px;
+  min-width: 320px;
+  max-width: 400px;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  animation: slideDown 0.3s ease-in-out;
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+
+    strong {
+      color: #333;
+      font-size: 0.9rem;
+    }
+  }
+
+  &-close {
+    cursor: pointer;
+    color: #999;
+    font-size: 0.9rem;
+    padding: 0 4px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #333;
+      transform: scale(1.2);
+    }
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 2px;
+
+      &:hover {
+        background: #999;
+      }
+    }
+  }
+
+  &-item {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    padding: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    &:hover {
+      border-color: $color-pink-dark;
+      background: #f8f9fa;
+      transform: scale(1.05);
+      box-shadow: 0 2px 8px rgba(213, 83, 140, 0.2);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    .image-thumbnail {
+      width: 100%;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+      background: #f0f0f0;
+    }
+
+    .image-number {
+      margin-top: 4px;
+      font-size: 0.7rem;
+      color: #666;
+      font-weight: 500;
+    }
+  }
+}
+
+// Icono de información
+.bi-info-circle {
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #0056b3 !important;
+    transform: scale(1.15);
+  }
+}
+
+// ============================================
+// ESTILOS PARA VALIDACIONES
+// ============================================
+
+textarea.is-invalid,
+input.is-invalid {
   border-color: #dc3545;
 
   &:focus {
     box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+    border-color: #dc3545;
   }
 }
 
-// Responsive
-@media (max-width: 768px) {
-  .direccion-item {
-    padding: 0.75rem;
+.container__form--error {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+// ============================================
+// ESTILOS RESPONSIVE
+// ============================================
+
+// Tablets y pantallas medianas
+@media (max-width: 992px) {
+  .container__form {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+
+    &--label {
+      padding: 1.5rem;
+    }
+
+    &--btn-group {
+      padding: 1.5rem;
+    }
+
+    &--btn,
+    &--btn-large,
+    &--btn-cancelar {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
   }
 
-  .direccion-item .d-flex {
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  .image-tooltip {
+    min-width: 280px;
+    max-width: 320px;
+    left: -25%;
+  }
+}
+
+// Móviles
+@media (max-width: 768px) {
+  .container__form {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 2rem;
+
+    &--label {
+      padding: 1rem;
+
+      input,
+      textarea {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    &--btn-group {
+      padding: 1rem;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &--radio-option {
+      padding: 0.5rem 0;
+    }
+
+    &--btn,
+    &--btn-large,
+    &--btn-cancelar {
+      width: 100%;
+      margin: 0.5rem 0;
+      height: 3.5rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  .direccion-item {
+    padding: 0.75rem;
+
+    .d-flex {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
   }
 
   .container__form--btn-agregar {
     font-size: 0.9rem;
     padding: 0.5rem;
   }
+
+  .image-tooltip {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 90%;
+    max-width: 90%;
+    max-height: 80vh;
+    margin: 0;
+    animation: fadeInMobile 0.3s ease-in-out;
+
+    @keyframes fadeInMobile {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &-grid {
+      grid-template-columns: repeat(2, 1fr);
+      max-height: 300px;
+    }
+
+    &-item {
+      .image-thumbnail {
+        height: 80px;
+      }
+    }
+  }
 }
 
-// form.component.scss - Agregar
+// Móviles muy pequeños
+@media (max-width: 480px) {
+  .container__form {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 
+    &--label {
+      padding: 0.75rem;
+
+      input,
+      textarea {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .image-tooltip {
+    min-width: 95%;
+    max-width: 95%;
+
+    &-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    &-item {
+      .image-thumbnail {
+        height: 60px;
+      }
+    }
+  }
+}
+
+// ============================================
+// UTILIDADES ADICIONALES
+// ============================================
+
+// Debug (si lo necesitas)
 .container__form--debug {
   display: block;
   margin-top: 4px;
@@ -269,64 +546,39 @@ textarea.is-invalid {
   border: 1px solid #e9ecef;
 }
 
-.direccion-item {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-color: #d5538c;
-    box-shadow: 0 2px 8px rgba(213, 83, 140, 0.1);
-  }
-
-  .direccion-label {
-    font-weight: 500;
-    color: #495057;
-  }
-
-  .btn-outline-danger {
-    color: #dc3545;
-    border: 1px solid #dc3545;
-    background: transparent;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: #dc3545;
-      color: white;
-    }
+// Estilos específicos para el input de imagen
+input[formControlName="imagen"] {
+  // Hereda todos los estilos de input definidos arriba
+  &::placeholder {
+    color: #6c757d;
+    font-size: 1rem;
   }
 }
 
-.container__form--btn-agregar {
-  background: transparent;
-  color: #d5538c;
-  border: 2px dashed #d5538c;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  width: 100%;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+// Mejoras visuales para el formulario
+.container__form--module {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 1rem;
 
-  &:hover {
-    background: #d5538c;
-    color: white;
-    transform: scale(1.02);
-    border-style: solid;
+  &:last-of-type {
+    border-bottom: none;
   }
 }
 
-textarea.is-invalid {
-  border-color: #dc3545;
+// Estilos para los botones de acción en el modal
+.d-flex.justify-content-center {
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+}
 
-  &:focus {
-    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
-  }
+// Mejora de accesibilidad para el tooltip
+.image-tooltip-item:focus-visible {
+  outline: 2px solid $color-pink-dark;
+  outline-offset: 2px;
+}
+
+// Scroll suave para el tooltip
+.image-tooltip-grid {
+  scroll-behavior: smooth;
 }
