@@ -57,7 +57,10 @@ export class TableComponent implements OnChanges {
    * Cerrar el modal
    */
   closeModal(): void {
+    // ✅ Resetear el instituto seleccionado
     this.institutoSelectado.set(null);
+
+    // ✅ Cerrar el modal de Bootstrap
     const modalElement = document.getElementById('editCreateModal');
     if (modalElement) {
       const modal = (window as any).bootstrap.Modal.getInstance(modalElement);

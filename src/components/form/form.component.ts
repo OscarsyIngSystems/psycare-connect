@@ -41,7 +41,7 @@ export class FormComponent implements OnInit {
         this.actualizarFormulario(this.institutoSeleccionado);
       } else {
         console.log('Creando nuevo instituto');
-        this.resetearFormulario();
+        this.resetearFormulario(); // ✅ Se limpia cuando el valor es null
       }
     }
   }
@@ -149,6 +149,7 @@ export class FormComponent implements OnInit {
   }
 
   onCloseModal(): void {
+    this.resetearFormulario();
     this.closeModalEvent.emit();
   }
 
