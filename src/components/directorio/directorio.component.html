@@ -8,9 +8,9 @@
         </div>
       </div>
     } @else {
-      @for (instituto of institutosFiltrados; track instituto.id) {
+      @for (instituto of institutosFiltrados; track $index) {
         <div
-          id="{{ instituto.id }}"
+          id="{{ $index + 1 }}"
           class="contener card animate__animated animate__pulse"
         >
           <div
