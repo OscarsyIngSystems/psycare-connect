@@ -131,7 +131,7 @@ export class AdministradorComponent implements OnInit {
               activo: activo
             };
           }
-          this.lordAlert.showToast('✅ Instituto actualizado', 'success');
+          this.lordAlert.showToast('Instituto actualizado', 'success');
           this.cargarInstitutos();
         },
         error: (err: any) => {
@@ -144,7 +144,7 @@ export class AdministradorComponent implements OnInit {
       this.institutoService.createInstituto(dataFormateada).subscribe({
         next: (nuevoInstituto: Institucion) => {
           this.institutos.push({ ...nuevoInstituto, activo: activo });
-          this.lordAlert.showToast('✅ Instituto creado', 'success');
+          this.lordAlert.showToast('Instituto creado', 'success');
           this.cargarInstitutos();
         },
         error: (err: any) => {
