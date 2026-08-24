@@ -8,6 +8,11 @@ import { Institucion } from '../../interfaces/institucion';
 import { CommonModule } from '@angular/common';
 import { EmptyStateComponent } from '../empty-state/empty-state.component';
 
+// Extender la interfaz para incluir el virtualId
+interface InstitucionConVirtualId extends Institucion {
+  virtualId: number;
+}
+
 @Component({
   selector: 'app-directorio',
   standalone: true,
@@ -21,8 +26,8 @@ import { EmptyStateComponent } from '../empty-state/empty-state.component';
   styleUrl: './directorio.component.scss',
 })
 export class DirectorioComponent implements OnInit {
-  institutos: Institucion[] = [];
-  institutosFiltrados: Institucion[] = [];
+  institutos: InstitucionConVirtualId[] = [];
+  institutosFiltrados: InstitucionConVirtualId[] = [];
   loading: boolean = false;
   error: string = '';
   scroll: any;
@@ -41,7 +46,7 @@ export class DirectorioComponent implements OnInit {
   }
 
   /**
-   * Carga los institutos desde la API
+   * Carga los institutos desde la API y asigna un virtualId
    */
   loadInstitutos(): void {
     this.loading = true;
@@ -49,17 +54,19 @@ export class DirectorioComponent implements OnInit {
 
     this.institutoService.getInstitutos().subscribe({
       next: (data: Institucion[]) => {
-        // Ordenar los datos por ID antes de asignarlos
+        // 1. Ordenar los datos por ID real
         const dataOrdenada = data.sort((a, b) => a.id - b.id);
         
-        // Asignar activo: true por defecto para todos los institutos
-        this.institutos = dataOrdenada.map(instituto => ({
+        // 2. Asignar virtualId basado en la posición (1, 2, 3, ...)
+        this.institutos = dataOrdenada.map((instituto, index) => ({
           ...instituto,
-          activo: true // Todos activos por defecto
+          activo: true, // Todos activos por defecto
+          virtualId: index + 1 // ID virtual consecutivo
         }));
+        
         this.filtrarInstitutosActivos();
         this.loading = false;
-        console.log('Institutos cargados desde API y ordenados por ID:', this.institutos);
+        console.log('Institutos cargados con virtualId:', this.institutos);
       },
       error: (err: any) => {
         console.error('Error al cargar institutos:', err);
@@ -98,14 +105,19 @@ export class DirectorioComponent implements OnInit {
 
   /**
    * Navega al detalle del instituto seleccionado
+   * Usa el ID real para la navegación
    */
-  verDetalle(institutoSeleccionado: Institucion): void {
+  verDetalle(institutoSeleccionado: InstitucionConVirtualId): void {
     this.scroll = this.getScrollPosition();
     localStorage.setItem('scrollPos', JSON.stringify(this.scroll));
 
-    // Guardar el instituto completo incluyendo el iframe
+    // Guardar el instituto completo (con ID real y virtual)
     this.storageService.setItemEncrypt('instSelect', institutoSeleccionado);
-    console.log(institutoSeleccionado, 'Selecciona instituto');
+    console.log('Instituto seleccionado:', {
+      id: institutoSeleccionado.id,
+      virtualId: institutoSeleccionado.virtualId,
+      nombre: institutoSeleccionado.nombre
+    });
 
     sessionStorage.setItem('accesoRedireccion', 'true');
     this.router.navigate(['/detalles']);
@@ -149,14 +161,17 @@ export class DirectorioComponent implements OnInit {
         next: (institutoActualizado: Institucion) => {
           const index = this.institutos.findIndex(i => i.id === data.id);
           if (index !== -1) {
-            // Mantener el estado activo del frontend
+            // Mantener el estado activo y el virtualId
             this.institutos[index] = {
               ...institutoActualizado,
-              activo: activo
+              activo: activo,
+              virtualId: this.institutos[index].virtualId // Mantener el mismo virtualId
             };
           }
-          // Re-ordenar después de actualizar
+          // Re-ordenar por ID real después de actualizar
           this.institutos.sort((a, b) => a.id - b.id);
+          // Reasignar virtualIds después de ordenar
+          this.reasignarVirtualIds();
           this.filtrarInstitutosActivos();
           this.lordAlert.showToast('Instituto actualizado exitosamente', 'success');
         },
@@ -169,13 +184,16 @@ export class DirectorioComponent implements OnInit {
       // Crear nuevo instituto
       this.institutoService.createInstituto(data).subscribe({
         next: (nuevoInstituto: Institucion) => {
-          const institutoConEstado = {
+          const institutoConEstado: InstitucionConVirtualId = {
             ...nuevoInstituto,
-            activo: activo
+            activo: activo,
+            virtualId: 0 // Temporal, se reasignará después
           };
           this.institutos.push(institutoConEstado);
-          // Re-ordenar después de agregar
+          // Re-ordenar por ID real después de agregar
           this.institutos.sort((a, b) => a.id - b.id);
+          // Reasignar virtualIds después de ordenar
+          this.reasignarVirtualIds();
           this.filtrarInstitutosActivos();
           this.lordAlert.showToast('Instituto creado exitosamente', 'success');
         },
@@ -199,8 +217,10 @@ export class DirectorioComponent implements OnInit {
         this.institutoService.deleteInstituto(id).subscribe({
           next: () => {
             this.institutos = this.institutos.filter(i => i.id !== id);
-            // Re-ordenar después de eliminar
+            // Re-ordenar por ID real después de eliminar
             this.institutos.sort((a, b) => a.id - b.id);
+            // Reasignar virtualIds después de ordenar
+            this.reasignarVirtualIds();
             this.filtrarInstitutosActivos();
             this.lordAlert.showModal(
               '¡Eliminado!',
@@ -215,5 +235,36 @@ export class DirectorioComponent implements OnInit {
         });
       }
     );
+  }
+
+  /**
+   * Reasigna los virtualIds basados en la posición actual en el array
+   * Después de ordenar, agregar o eliminar
+   */
+  private reasignarVirtualIds(): void {
+    this.institutos.forEach((instituto, index) => {
+      instituto.virtualId = index + 1;
+    });
+    console.log('VirtualIds reasignados:', this.institutos.map(i => ({
+      id: i.id,
+      virtualId: i.virtualId,
+      nombre: i.nombre
+    })));
+  }
+
+  /**
+   * Obtiene el virtualId de un instituto por su ID real
+   */
+  getVirtualIdByRealId(realId: number): number | undefined {
+    const instituto = this.institutos.find(i => i.id === realId);
+    return instituto?.virtualId;
+  }
+
+  /**
+   * Obtiene el ID real por virtualId
+   */
+  getRealIdByVirtualId(virtualId: number): number | undefined {
+    const instituto = this.institutos.find(i => i.virtualId === virtualId);
+    return instituto?.id;
   }
 }
