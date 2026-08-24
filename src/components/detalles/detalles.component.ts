@@ -6,6 +6,11 @@ import { Institucion } from '../../interfaces/institucion';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { LordStorageService } from '../../services/lord-storage/lord-storage.service';
 
+// Extender la interfaz para incluir virtualId
+interface InstitucionConVirtualId extends Institucion {
+  virtualId?: number;
+}
+
 @Component({
   selector: 'app-detalles',
   standalone: true,
@@ -18,7 +23,7 @@ import { LordStorageService } from '../../services/lord-storage/lord-storage.ser
   styleUrl: './detalles.component.scss',
 })
 export class DetallesComponent implements OnInit {
-  data: Institucion | null = null;
+  data: InstitucionConVirtualId | null = null;
   loading: boolean = true;
   error: string = '';
   iframeUrl: SafeResourceUrl | string = '';
@@ -192,5 +197,13 @@ export class DetallesComponent implements OnInit {
    */
   hasMultipleProcesos(): boolean {
     return this.procesoList !== null && this.procesoList.length > 1;
+  }
+
+  /**
+   * Obtener el virtualId para mostrar en el HTML
+   * Si no existe, usa el id real
+   */
+  getDisplayId(): number {
+    return this.data?.virtualId || this.data?.id || 0;
   }
 }
