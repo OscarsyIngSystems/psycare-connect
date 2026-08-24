@@ -8,10 +8,11 @@
         </div>
       </div>
     } @else {
-      @for (instituto of institutosFiltrados; track $index) {
+      @for (instituto of institutosFiltrados;  track instituto.id; let i = $index) {
         <div
-          id="{{ $index + 1 }}"
+          id="{{ instituto.id }}"
           class="contener card animate__animated animate__pulse"
+           data-number="{{ i + 1 }}"
         >
           <div
             class="row d-flex justify-content-center w-100 h-100 align-items-center"
