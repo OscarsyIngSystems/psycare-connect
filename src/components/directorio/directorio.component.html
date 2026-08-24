@@ -12,7 +12,8 @@
         <div
           id="{{ instituto.id }}"
           class="contener card animate__animated animate__pulse"
-        
+        [attr.number]="instituto.virtualId"
+          [attr.data-real-id]="instituto.id"
         >
           <div
             class="row d-flex justify-content-center w-100 h-100 align-items-center"
