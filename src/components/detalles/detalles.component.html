@@ -13,7 +13,8 @@
 } @else if (data) {
   <section>
     <div class="nombreClinica animate__animated animate__bounceIn">
-      <h2 id="{{ data.virtualId }}">{{ data.nombre }}</h2>
+      <!-- Usar getDisplayId() para obtener el ID a mostrar -->
+      <h2 [id]="getDisplayId()">{{ data.nombre }}</h2>
     </div>
 
     <div class="row contenedorPrincipal">
