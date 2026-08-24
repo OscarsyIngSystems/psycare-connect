@@ -31,7 +31,7 @@
 // }
 
 .card::after {
-  content: attr(id);
+  content: attr(number);
   font-weight: 800;
   color: white;
   text-align: center;
