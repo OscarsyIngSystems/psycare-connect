@@ -49,14 +49,17 @@ export class DirectorioComponent implements OnInit {
 
     this.institutoService.getInstitutos().subscribe({
       next: (data: Institucion[]) => {
+        // Ordenar los datos por ID antes de asignarlos
+        const dataOrdenada = data.sort((a, b) => a.id - b.id);
+        
         // Asignar activo: true por defecto para todos los institutos
-        this.institutos = data.map(instituto => ({
+        this.institutos = dataOrdenada.map(instituto => ({
           ...instituto,
           activo: true // Todos activos por defecto
         }));
         this.filtrarInstitutosActivos();
         this.loading = false;
-        console.log('Institutos cargados desde API:', this.institutos);
+        console.log('Institutos cargados desde API y ordenados por ID:', this.institutos);
       },
       error: (err: any) => {
         console.error('Error al cargar institutos:', err);
@@ -152,6 +155,8 @@ export class DirectorioComponent implements OnInit {
               activo: activo
             };
           }
+          // Re-ordenar después de actualizar
+          this.institutos.sort((a, b) => a.id - b.id);
           this.filtrarInstitutosActivos();
           this.lordAlert.showToast('Instituto actualizado exitosamente', 'success');
         },
@@ -169,6 +174,8 @@ export class DirectorioComponent implements OnInit {
             activo: activo
           };
           this.institutos.push(institutoConEstado);
+          // Re-ordenar después de agregar
+          this.institutos.sort((a, b) => a.id - b.id);
           this.filtrarInstitutosActivos();
           this.lordAlert.showToast('Instituto creado exitosamente', 'success');
         },
@@ -192,6 +199,8 @@ export class DirectorioComponent implements OnInit {
         this.institutoService.deleteInstituto(id).subscribe({
           next: () => {
             this.institutos = this.institutos.filter(i => i.id !== id);
+            // Re-ordenar después de eliminar
+            this.institutos.sort((a, b) => a.id - b.id);
             this.filtrarInstitutosActivos();
             this.lordAlert.showModal(
               '¡Eliminado!',
